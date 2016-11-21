@@ -18,7 +18,7 @@
 @interface AboutViewController (){
     UIImage *img;
     UIImage *imgLook;
-    NSString *updatePath,*longitude,*latitude;
+    NSString *updatePath,*longitude,*latitude,*isMap,*isPhoto;
     NSDate *serverDateTime;
     BOOL isFrist;
     NSMutableArray* buttons;
@@ -41,7 +41,7 @@
     
     //设置允许在后台定位
     [self.locationManager setAllowsBackgroundLocationUpdates:NO];
-
+    
 }
 
 
@@ -81,7 +81,7 @@
         
         self.mapView.scrollEnabled =  NO;
         
-      //  self.mapView.zoomEnabled = NO;
+        //  self.mapView.zoomEnabled = NO;
         
         UIView *zoomPannelView = [self makeZoomPannelView];
         zoomPannelView.center = CGPointMake(self.view.bounds.size.width -  CGRectGetMidX(zoomPannelView.bounds) - 10,
@@ -89,13 +89,13 @@
         
         zoomPannelView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
         [self.view addSubview:zoomPannelView];
-       
+        
         self.gpsButton = [self makeGPSButtonView];
         self.gpsButton.center = CGPointMake(CGRectGetMidX(self.gpsButton.bounds) + 10,
                                             self.view.bounds.size.height -  CGRectGetMidY(self.gpsButton.bounds) - 20);
         [self.view addSubview:self.gpsButton];
         self.gpsButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
-
+        
         
     }
     
@@ -161,12 +161,12 @@
 
 
 -(void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
-  //  NSLog(@"regionDidChangeAnimated");
+    //  NSLog(@"regionDidChangeAnimated");
     
     AnswerData *model = [[AnswerData alloc ]init];
     model.questionAsnwer = [NSString stringWithFormat:@"%.1f",self.mapView.zoomLevel];
     
-  [Utils saveLoginAMap:model];
+    [Utils saveLoginAMap:model];
     
 }
 
@@ -184,7 +184,7 @@
         isFrist = true;
         _lblLat.text = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
         _lblLon.text = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
-
+        
         NSLog(@"location:{lat:%f; lon:%f; accuracy:%f; reGeocode:%@}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy, reGeocode.formattedAddress);
         
         //获取到定位信息，更新annotation
@@ -199,11 +199,11 @@
         [self.pointAnnotaiton setCoordinate:location.coordinate];
         
         [self.mapView setCenterCoordinate:location.coordinate];
-     
         
-       // self.mapView.scrollEnabled = NO;
         
-       // self.mapView.zoomEnabled = NO;
+        // self.mapView.scrollEnabled = NO;
+        
+        // self.mapView.zoomEnabled = NO;
         
     }
 }
@@ -212,19 +212,19 @@
 {
     // Lets handle ValueChanged event only for selected button, and ignore for deselected
     if(sender.selected) {
-       //
+        //
         if([sender.titleLabel.text isEqualToString:@"上班卡"]){
             _isIn = true;
         }else{
             _isIn = false;
         }
-       // NSLog(@"Selected color: %@", );
+        // NSLog(@"Selected color: %@", );
     }
 }
 
 - (void) initContorl{
     float x = 3; //[Utils getScreenWidth] - 110;
-  
+    
     buttons = [NSMutableArray arrayWithCapacity:3];
     CGRect btnRect = CGRectMake(x, 70, 230, 40);
     for (NSString* optionTitle in @[@"上班卡", @"下班卡"]) {
@@ -246,8 +246,8 @@
     [buttons[0] setGroupButtons:buttons]; // Setting buttons into the group
     
     [buttons[0] setSelected:YES]; // Making the first button initially selected
-
-   
+    
+    
     _lblServ  = [[UILabel alloc] initWithFrame:CGRectMake(x, 85 + 70, 230,20)];
     
     _lblServ.text=@"服务器时间";
@@ -261,7 +261,7 @@
     _lblServDate  = [[UILabel alloc] initWithFrame:CGRectMake(x, 105 + 70, 230,30)];
     [_lblServDate setTextAlignment:NSTextAlignmentLeft];
     [_lblServDate setFont:HYQIHEISIZE(18)];
-  //  [_lblServDate setTextColor:NavFontColor];
+    //  [_lblServDate setTextColor:NavFontColor];
     _lblServDate.text = strDate ;
     [self.view addSubview:_lblServDate];
     
@@ -273,36 +273,36 @@
     _lblServTime.text = strDate ;
     [self.view addSubview:_lblServTime];
     
-
+    
     UILabel *label1  = [[UILabel alloc] initWithFrame:CGRectMake(x, 155 + 70, 230,30)];
     
     label1.text=@"纬度";
     [label1 setFont:HYQIHEISIZE(18)];
     [self.view addSubview:label1];
-
+    
     
     _lblLat = [[UILabel alloc] initWithFrame:CGRectMake(x, 180 + 70, 230,30)];
     
     _lblLat.text=@"888.888888";
     [_lblLat setFont:HYQIHEISIZE(18)];
-        [_lblLat setTextColor:NavFontColor];
+    [_lblLat setTextColor:NavFontColor];
     [self.view addSubview:_lblLat];
-
     
-     UILabel *label2  = [[UILabel alloc] initWithFrame:CGRectMake(x, 205 + 70, 230,30)];
+    
+    UILabel *label2  = [[UILabel alloc] initWithFrame:CGRectMake(x, 205 + 70, 230,30)];
     
     label2.text=@"经度";
     [label2 setFont:HYQIHEISIZE(18)];
     
     [self.view addSubview:label2];
-
+    
     
     _lblLon = [[UILabel alloc] initWithFrame:CGRectMake(x, 230 + 70, 230,30)];
     
     _lblLon.text=@"888.888889";
     [_lblLon setFont:HYQIHEISIZE(18)];
     [_lblLon setTextColor:NavFontColor];
-
+    
     [self.view addSubview:_lblLon];
     
     _focusView = [[UIView alloc]initWithFrame:CGRectMake(0, 70, 80, 80)];
@@ -339,52 +339,153 @@
     
 }
 
+- (UIImage *)fixOrientation:(UIImage *)aImage {
+    
+    // No-op if the orientation is already correct
+    if (aImage.imageOrientation == UIImageOrientationUp)
+        return aImage;
+    
+    // We need to calculate the proper transformation to make the image upright.
+    // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    
+    switch (aImage.imageOrientation) {
+        case UIImageOrientationDown:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.width, aImage.size.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+            
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
+            transform = CGAffineTransformRotate(transform, M_PI_2);
+            break;
+            
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, 0, aImage.size.height);
+            transform = CGAffineTransformRotate(transform, -M_PI_2);
+            break;
+        default:
+            break;
+    }
+    
+    switch (aImage.imageOrientation) {
+        case UIImageOrientationUpMirrored:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.width, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+            
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, aImage.size.height, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+        default:
+            break;
+    }
+    
+    // Now we draw the underlying CGImage into a new context, applying the transform
+    // calculated above.
+    CGContextRef ctx = CGBitmapContextCreate(NULL, aImage.size.width, aImage.size.height,
+                                             CGImageGetBitsPerComponent(aImage.CGImage), 0,
+                                             CGImageGetColorSpace(aImage.CGImage),
+                                             CGImageGetBitmapInfo(aImage.CGImage));
+    CGContextConcatCTM(ctx, transform);
+    switch (aImage.imageOrientation) {
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            // Grr...
+            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.height,aImage.size.width), aImage.CGImage);
+            break;
+            
+        default:
+            CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.width,aImage.size.height), aImage.CGImage);
+            break;  
+    }  
+    
+    // And now we just create a new UIImage from the drawing context  
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);  
+    UIImage *img = [UIImage imageWithCGImage:cgimg];  
+    CGContextRelease(ctx);  
+    CGImageRelease(cgimg);  
+    return img;  
+}
+
 - (void) shutterCamera:(id)sender {
+   
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"打卡中,请稍候...";
     
     isFrist = false;
     [self.locationManager startUpdatingLocation];
     
-//    CGPoint point =  CGPointMake(0.0f, 0.0f); //[gesture locationInView:gesture.view];
-//    [self focusAtPoint:point];
-
+    //    CGPoint point =  CGPointMake(0.0f, 0.0f); //[gesture locationInView:gesture.view];
+    //    [self focusAtPoint:point];
+    
     
     AVCaptureConnection * videoConnection = [self.ImageOutPut connectionWithMediaType:AVMediaTypeVideo];
     if (!videoConnection) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         NSLog(@"take photo failed!");
         return;
     }
     
     [self.ImageOutPut captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
         if (imageDataSampleBuffer == NULL) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             return;
         }
-       
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.labelText = @"打卡中,请稍候...";
+        
+        
         
         NSData * imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         self.image = [UIImage imageWithData:imageData];
         [self.session stopRunning];
         
+        self.image = [self fixOrientation:self.image];
         
-        CGRect inRect = self.viewMap.bounds;
+         NSString *base64Encoded = @"";
         
-        self.screenshotImage = [self.mapView takeSnapshotInRect:inRect];
+        if([isPhoto isEqualToString:@"1"]){
+            
+            NSData *nsdata = UIImageJPEGRepresentation(self.image,1);
+            
+            base64Encoded = [nsdata base64EncodedStringWithOptions:0];
         
-        CGSize size = CGSizeMake(self.image.size.width ,self.image.size.height+self.screenshotImage.size.height);
-        
-        UIGraphicsBeginImageContext(size);
-        [self.image drawInRect:CGRectMake(0, 0, self.image.size.width, self.image.size.height)];
-        
-        [self.screenshotImage drawInRect:CGRectMake(0,self.image.size.height, self.image.size.width, self.screenshotImage.size.height)];
-        
-        UIImage *togetherImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-
-        NSData *nsdata = UIImageJPEGRepresentation(togetherImage,1);
-        
-        NSString *base64Encoded = [nsdata base64EncodedStringWithOptions:0];
+            
+            CGRect inRect = self.viewMap.bounds;
+            
+            self.screenshotImage = [self.mapView takeSnapshotInRect:inRect];
+            
+            
+            if([isMap isEqualToString:@"1"]){
+                
+                CGSize size = CGSizeMake(self.image.size.width ,self.image.size.height+self.screenshotImage.size.height);
+                
+                UIGraphicsBeginImageContext(size);
+                [self.image drawInRect:CGRectMake(0, 0, self.image.size.width, self.image.size.height)];
+                
+                [self.screenshotImage drawInRect:CGRectMake(0,self.image.size.height, self.image.size.width, self.screenshotImage.size.height)];
+                
+                UIImage *togetherImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                
+                
+                NSData *nsdata = UIImageJPEGRepresentation(togetherImage,1);
+                
+                base64Encoded = [nsdata base64EncodedStringWithOptions:0];
+                
+            }
+        }
         NSURL *url = [NSURL URLWithString:[urlServer stringByAppendingString:@"App/FileUpload"]];
         ASIFormDataRequest *requestForm = [[ASIFormDataRequest alloc] initWithURL:url];
         
@@ -415,9 +516,9 @@
         
         [requestForm setTimeOutSeconds:timeOut];
         [requestForm startSynchronous];
-
         
-
+        
+        
     }];
 }
 - (BOOL) imageHasAlpha: (UIImage *) image
@@ -465,14 +566,14 @@
             }
             
             //初始化AlertView
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示"
-                                                                message:@"打卡成功"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"确定"
-                                                      otherButtonTitles:nil ,nil];
-                
-                alert.tag = 3;
-                [alert show];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示"
+                                                            message:@"打卡成功"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil ,nil];
+            
+            alert.tag = 3;
+            [alert show];
             
             //   [Utils showMBAllTextDialog:@"打卡成功." view:self.view];
             
@@ -491,6 +592,7 @@
 }
 
 - (void)requestProgessFailed:(ASIHTTPRequest *)request{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     [ Utils showAllTextDialog:@"网络超时,请稍后再试!"];
     
@@ -563,7 +665,12 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"获取服务器时间,请稍候...";
     NSURL *url = [NSURL URLWithString:[urlServer stringByAppendingString:@"App/GetDateTime"]];
+    
+    
+    
     ASIFormDataRequest *requestForm = [[ASIFormDataRequest alloc] initWithURL:url];
+    
+    [requestForm setPostValue:studented.employee_ID forKey:@"ver"];
     
     
     [requestForm setDelegate:self];
@@ -584,15 +691,15 @@
             
             NSString *srvDate = [responseDict objectForKey:@"srvDate"];
             
-           
-          //  KLLog(srvDate);
             
-//            if ([_device lockForConfiguration:nil]) {
-//                  [_device setFlashMode:AVCaptureFlashModeOff];
-//                
-//                [_device unlockForConfiguration];
-//            }
-
+            //  KLLog(srvDate);
+            
+            //            if ([_device lockForConfiguration:nil]) {
+            //                  [_device setFlashMode:AVCaptureFlashModeOff];
+            //
+            //                [_device unlockForConfiguration];
+            //            }
+            
             
             NSDateFormatter *format=[[NSDateFormatter alloc] init];
             [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -605,7 +712,7 @@
             
             timerServTime = [[MZTimerLabel alloc] initWithLabel:_lblServTime andTimerType:MZTimerLabelTypeStopWatch];
             timerServTime.timeFormat = @"HH:mm:ss";
-
+            
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"HH"];
             NSString *strHour = [dateFormatter stringFromDate:date];
@@ -623,11 +730,35 @@
             NSInteger total = totalHour + totalMinute + totalSecond;
             
             
+            
+            _isIn = [[responseDict objectForKey:@"isIn"] boolValue];
+            
+                 isMap = [responseDict objectForKey:@"IsUploadMap"];
+                   
+            
+               isPhoto = [responseDict objectForKey:@"IsUploadPhoto"];
+            
+            
+            if(_isIn){
+                [buttons[0] setSelected:YES];
+            }else{
+                [buttons[1] setSelected:YES];
+            }
+            
+            
+            if ([_device lockForConfiguration:nil]) {
+                
+                if ([_device isFlashModeSupported:AVCaptureFlashModeOff]) {
+                    [_device setFlashMode:AVCaptureFlashModeOff];
+                }
+                
+                [_device unlockForConfiguration];
+            }
             [timerServTime start];
             
             
             [timerServTime addTimeCountedByTime:total];
-
+            
             timerDownCount = [[MZTimerLabel alloc] initWithLabel:nil andTimerType:MZTimerLabelTypeTimer];
             
             timerDownCount.delegate = self;
@@ -635,26 +766,8 @@
             [timerDownCount setCountDownTime:DownCount];
             
             [timerDownCount start];
-            
-            _isIn = [[responseDict objectForKey:@"isIn"] boolValue];
- 
-            
-            if(_isIn){
-                [buttons[0] setSelected:YES];
-            }else{
-                 [buttons[1] setSelected:YES];
-            }
-            
-            
-            if ([_device lockForConfiguration:nil]) {
-                
-                    if ([_device isFlashModeSupported:AVCaptureFlashModeOff]) {
-                        [_device setFlashMode:AVCaptureFlashModeOff];
-                    }
-                
-                [_device unlockForConfiguration];
-            }
 
+            
             
         } else {
             [Utils showAllTextDialog: @"网络超时,请稍后再试!"];
@@ -669,8 +782,8 @@
 }
 
 - (void)timerLabel:(MZTimerLabel*)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime{
-
-     [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
 
@@ -751,25 +864,25 @@
     
     [super viewDidLoad];
     
-     studented = [Utils loadCustomObjectWithKey:LoginKey];
+    studented = [Utils loadCustomObjectWithKey:LoginKey];
     
-        if(studented == nil){
-            [Utils showMBAllTextDialog:@"未获取到当前登录用户名称,请重新登录." view:self.view];
-            return;
-        }
+    if(studented == nil){
+        [Utils showMBAllTextDialog:@"未获取到当前登录用户名称,请重新登录." view:self.view];
+        return;
+    }
     if([_lblServTime.text isEqualToString:@""]){
         
-         [Utils showMBAllTextDialog:@"服务器时间获取失败,不允许进行打卡." view:self.view];
+        [Utils showMBAllTextDialog:@"服务器时间获取失败,不允许进行打卡." view:self.view];
         return;
     }
     _canCa = [self canUserCamear];
     if (_canCa) {
         [self customCamera];
-       
+        
     }else{
         return;
     }
-
+    
     
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
@@ -781,11 +894,11 @@
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:studented.name
                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self action:nil];
+                                                                   target:self action:nil];
     [rightButton setTitleTextAttributes:@{NSFontAttributeName:HYQIHEISIZE(14)} forState:UIControlStateNormal];
     
     self.navigationItem.rightBarButtonItem = rightButton;
-
+    
     
     
     [self initContorl];
