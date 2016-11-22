@@ -265,6 +265,8 @@
         if (build > app_build) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"系统提示" message:@"检测到新版本,请立即升级!" delegate:self cancelButtonTitle:@"立即升级" otherButtonTitles:nil, nil];
             alert.tag = 1;
+            [alert show];
+
             return;
         }else{
             [Utils showMBAllTextDialog:@"亲,当前版本已经是最新的啦." view:self.view];

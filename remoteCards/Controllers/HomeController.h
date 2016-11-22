@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StudentMaster.h"
 
-@interface HomeController : UICollectionViewController{
+@interface HomeController : UICollectionViewController<UIAlertViewDelegate>{
 
     StudentMaster *studented;
 }

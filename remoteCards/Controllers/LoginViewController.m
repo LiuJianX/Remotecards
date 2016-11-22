@@ -14,7 +14,7 @@
 #import "MBProgressHUD+MJ.h"
 #import "StudentMaster.h"
 #import "Utils.h"
-
+#import "UpdatePwdViewController.h"
 #import "MobClick.h"
 
 
@@ -292,6 +292,17 @@
                 return;
             }
             
+            Boolean isChange= [[responseDict objectForKey:@"isChange"] boolValue];
+            
+            if(isChange){
+                
+                UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"为了个人资料安全,请先修改密码" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil ];
+                [alterView show];
+                
+
+                return;
+            }
+            
             StudentMaster* testObj = [[StudentMaster alloc] init];
             
             
@@ -338,6 +349,17 @@
     [ Utils showAllTextDialog:@"网络超时,请稍后再试!"];
     
 }
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    UpdatePwdViewController *update = [[UpdatePwdViewController alloc ]init];
+    update.title = @"修改密码";
+    [self.navigationController pushViewController:update animated:YES];
+    
+    
+}
+
 
 
 @end

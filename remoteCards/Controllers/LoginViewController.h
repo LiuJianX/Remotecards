@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController<UIAlertViewDelegate>
 
 @property (nonatomic,strong) AppDelegate *appDelegate;
 

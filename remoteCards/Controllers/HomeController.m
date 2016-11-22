@@ -29,7 +29,7 @@
 #import "PersonViewController.h"
 #import "ZCTradeView.h"
 #import "MBProgressHUD+MJ.h"
-
+#import "UpdatePwdViewController.h"
 
 
 @interface HomeController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate
@@ -152,7 +152,73 @@
     [self callCreateMenu];
     
     
+    NSURL *url = [NSURL URLWithString:[urlServer stringByAppendingString:@"App/GetIsChangePwd"]];
+    ASIFormDataRequest *requestForm = [[ASIFormDataRequest alloc] initWithURL:url];
+    
+    [requestForm setPostValue:studented.employee_ID forKey:@"userId"];
+    
+    [requestForm setTimeOutSeconds:timeOut];
+    [requestForm setDelegate:self];
+    
+    [requestForm setDidFailSelector:@selector(requestChanagePwdFailed:)];
+    
+    [requestForm setDidFinishSelector:@selector(requestChanagePwdSuccess:)];
+    
+    
+    [requestForm startSynchronous];
+
+    
 }
+
+
+- (void)requestChanagePwdSuccess:(ASIHTTPRequest *)request
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    @try{
+        if (request.responseStatusCode == 200) {
+            NSString *responseString = [request responseString];
+            NSMutableDictionary *responseDict = [responseString JSONValue];
+            
+            Boolean isChange= [[responseDict objectForKey:@"isChange"] boolValue];
+            
+            if(isChange){
+                
+                UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"为了个人资料安全,请先修改密码" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil ];
+                [alterView show];
+                
+                
+                return;
+            }
+            
+            
+        } else {
+            [Utils showAllTextDialog: @"网络超时,请稍后再试!"];
+        }
+    } @catch (NSException *exception) {
+        [Utils showAllTextDialog:[NSString stringWithFormat:@"发生错误,原因:%@",exception] ];
+        
+    }@finally{
+        
+    }
+    
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    UpdatePwdViewController *update = [[UpdatePwdViewController alloc ]init];
+    update.title = @"修改密码";
+    [self.navigationController pushViewController:update animated:YES];
+    
+    
+}
+
+- (void)requestChanagePwdFailed:(ASIHTTPRequest *)request{
+    
+    [ Utils showAllTextDialog:@"网络超时,请稍后再试!"];
+    
+}
+
 
 /**
  *  登录之后创建此菜单.
