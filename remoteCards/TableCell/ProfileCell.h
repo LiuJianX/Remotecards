@@ -17,6 +17,10 @@ typedef void(^buttonUpdatePwd)(ProfileCell *);
 @property (strong, nonatomic) buttonUpdatePwd buttonUpdatePwdBlock;
 
 
+
+typedef void(^buttonTest)(ProfileCell *);
+@property (strong, nonatomic) buttonTest buttonTestBlock;
+
 @property (nonatomic,strong) UILabel *lblEmp_ID;
 @property (nonatomic,strong) UILabel *lblName;
 @property (nonatomic,strong) UILabel *lbltDate;

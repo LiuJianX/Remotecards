@@ -230,14 +230,14 @@
     
     header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:NavFontColor];
-    header.textLabel.font = HYQIHEISIZE(24);
+    header.textLabel.font = HYQIHEISIZE(16);
     header.textLabel.text = jobName;
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    return 50;
+    return 35;
     
 }
 
@@ -337,7 +337,7 @@
             [mtJob addObject:model];
                 
             
-            jobName = [NSString stringWithFormat:@"%@年%@月 当月评份： %@",year,month,[self getDecrypt:str]];
+            jobName = [NSString stringWithFormat:@"%@ %@年%@月 当月评份： %@", studented.name,year,month,[self getDecrypt:str]];
 
             
             [tableViewJob reloadData];

@@ -40,6 +40,10 @@
 @property (nonatomic,strong) UILabel *lblDuty;
 @property (nonatomic,strong) UILabel *lblPosition;
 @property (nonatomic,strong) UILabel *lblWeekDate;
+@property (nonatomic,strong) UILabel *lblOtIn2;
+@property (nonatomic,strong) UILabel *lblOtOut2;
+
+
 
 
 /**

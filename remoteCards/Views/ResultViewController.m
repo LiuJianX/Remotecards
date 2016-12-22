@@ -33,16 +33,6 @@
 
 @implementation ResultViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"PageRequstJob"];
-}
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"PageRequstJob"];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -77,17 +67,9 @@
     
     
     self.navigationItem.rightBarButtonItem = rightButton;
-
-    
-    
-//    if(is4Inch){
-//        tabHeight = 49;
-//    }
-    
+ 
     mtJob = [[NSMutableArray alloc]init];
     
- 
- 
     tableViewJob = [[UITableView alloc]initWithFrame:CGRectMake(0,0, [Utils getScreenWidth], [Utils getScreenHeight] )  style: UITableViewStyleGrouped];
     
     tableViewJob.backgroundColor = KLCollectionBkgCollor;
@@ -99,8 +81,6 @@
     
     tableViewJob.rowHeight = 250;
     
-    //mtJob = [[NSMutableArray alloc]init];
-    
     [self.view addSubview:tableViewJob];
     
     NSDate *currentDate = [NSDate date];//获取当前时间，日期
@@ -111,28 +91,10 @@
     
     month = [dateFormatter stringFromDate:currentDate];
     
-    jobName = [NSString stringWithFormat:@"考勤日期：%@年%@月",year,month];
+   jobName = [NSString stringWithFormat:@"%@ 考勤日期：%@年%@月",studented.name,year,month];
     
     [self getJobData:year month:month];
     
-    
-// 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-//    tableViewJob.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        [self getJobData];
-//    }];
-    
-    // 马上进入刷新状态
-    //[tableViewJob.header beginRefreshing];
-    
-    
-    
-//    tabBarProfile = [[UITabBar alloc]initWithFrame:CGRectMake(0,[Utils getScreenHeight]  - tabHeight, [Utils getScreenWidth],49) ] ;
-//    
-//    tabBarProfile.delegate = self;
-//    tabBarProfile.backgroundColor = KLCollectionBkgCollor;
-//    
-//    [self.view addSubview:tabBarProfile];
-//
 }
 
 
@@ -167,9 +129,10 @@
         [dateFormat setDateFormat:@"M"];//设定时间格式
         
         month = [dateFormat stringFromDate:datePicker.date];
-       
-        jobName = [NSString stringWithFormat:@"考勤日期：%@年%@月",year,month];
+  
+        jobName = [NSString stringWithFormat:@"%@ 考勤月份：%@年%@月",studented.name,year,month];
         
+      
         [self getJobData:year month:month];
         
     }];
@@ -204,24 +167,31 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
+    
+    @try{
     view.tintColor = NavFontColor;
     
     header = (UITableViewHeaderFooterView *)view;
     [header.textLabel setTextColor:NavFontColor];
-    header.textLabel.font = HYQIHEISIZE(24);
+    header.textLabel.font = HYQIHEISIZE(20);
     header.textLabel.text = jobName;
- 
+        
+} @catch (NSException *exception) {
+    [Utils showAllTextDialog:[NSString stringWithFormat:@"发生错误,原因:%@",exception]];
+    
+}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    return 50;
+    return 35;
     
 }
 
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+   
+    @try{
     NSString *identifierCell = @"KaoQinResultCellIdentifier";
     KaoQinResultCell *cell = [tableView dequeueReusableCellWithIdentifier:identifierCell];
      
@@ -241,6 +211,11 @@
     
     return cell;
   
+} @catch (NSException *exception) {
+    [Utils showAllTextDialog:[NSString stringWithFormat:@"发生错误,原因:%@",exception]];
+    
+}
+
 }
 #pragma mark - 数据源方法
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -310,68 +285,36 @@
          
                 Interview *model = [[Interview alloc] init];
             
-                model.workDays = [key objectForKey:@"WorkDays"] ;
+                  if ((NSNull *)[key objectForKey:@"WorkDays"] != [NSNull null])
+                      model.workDays = [key objectForKey:@"WorkDays"] ;
+            if ((NSNull *)[key objectForKey:@"WorkHours"] != [NSNull null])
+
                 model.workHours = [key objectForKey:@"WorkHours"] ;
+            if ((NSNull *)[key objectForKey:@"Vacation"] != [NSNull null])
                 model.vacation = [key objectForKey:@"Vacation"] ;
+            if ((NSNull *)[key objectForKey:@"VacSlr"] != [NSNull null])
                 model.vacSlr = [key objectForKey:@"VacSlr"] ;
+            if ((NSNull *)[key objectForKey:@"OtTime"] != [NSNull null])
                 model.otTime = [key objectForKey:@"OtTime"] ;
-                model.oriOT = [key objectForKey:@"OriOT"] ;
-                model.vacOT = [key objectForKey:@"VacOT"] ;
-                model.legOT = [key objectForKey:@"LegOT"] ;
-                model.nightCount = [key objectForKey:@"NightCount"] ;
-                model.restTime = [key objectForKey:@"RestTime"] ;
-                model.late = [key objectForKey:@"Late"] ;
-                model.lateTime = [key objectForKey:@"LateTime"] ;
-                model.leave = [key objectForKey:@"Leave"] ;
-                model.noCard = [key objectForKey:@"NoCard"] ;
-                model.noWork = [key objectForKey:@"NoWork"] ;
-                model.leaveTime = [key objectForKey:@"LeaveTime"] ;
-                model.sleaveTime = [key objectForKey:@"sLeaveTime"] ;
-                
-//                
-//                model.weekDate = [key objectForKey:@"WeekDate"] ;
-//                model.tDate = [key objectForKey:@"tDate"] ;
-//                model.emp_ID = [key objectForKey:@"Emp_ID"] ;
-//                model.workIn1 = [key objectForKey:@"WorkIn1"] ;
-//                model.workIn2 = [key objectForKey:@"WorkIn2"] ;
-//                model.workOut1 = [key objectForKey:@"WorkOut1"] ;
-//                model.workOut2 = [key objectForKey:@"WorkOut2"] ;
-//                model.otIn1 = [key objectForKey:@"OtIn1"] ;
-//                model.otOut1 = [key objectForKey:@"OtOut1"] ;
-//                model.leave = [key objectForKey:@"Leave"] ;
-//                model.ot = [key objectForKey:@"ot"] ;;
-//                model.late = [key objectForKey:@"Late"] ;
-//                model.noWork = [key objectForKey:@"NoWork"] ;
-//                model.noCard = [key objectForKey:@"NoCard"] ;
-//                model.vacation = [key objectForKey:@"Vacation"] ;
-//                model.workHour = [key objectForKey:@"WorkHour"] ;
-//                model.restHour = [key objectForKey:@"RestHour"] ;
-//                model.workType = [key objectForKey:@"WorkType"] ;
-//                model.workDays = [key objectForKey:@"WorkDays"] ;
-//                model.vac = [key objectForKey:@"Vac"] ;
-//                model.remark = [key objectForKey:@"Remark"] ;
-//                model.rplDirect = [key objectForKey:@"RplDirect"] ;
-//                model.rplHour = [key objectForKey:@"RplHour"] ;
-//                model.kResult = [key objectForKey:@"kResult"] ;
-//                model.name = [key objectForKey:@"Name"] ;
-//                model.departName = [key objectForKey:@"DepartName"] ;
-//                model.duty = [key objectForKey:@"Duty"] ;
-//                model.position = [key objectForKey:@"Position"] ;
-             
-                
-                
+               if ((NSNull *)[key objectForKey:@"OriOT"] != [NSNull null])
+                   model.oriOT = [key objectForKey:@"OriOT"] ;
+              if ((NSNull *)[key objectForKey:@"VacOT"] != [NSNull null]) model.vacOT = [key objectForKey:@"VacOT"] ;
+               if ((NSNull *)[key objectForKey:@"LegOT"] != [NSNull null]) model.legOT = [key objectForKey:@"LegOT"] ;
+               if ((NSNull *)[key objectForKey:@"NightCount"] != [NSNull null]) model.nightCount = [key objectForKey:@"NightCount"] ;
+               if ((NSNull *)[key objectForKey:@"RestTime"] != [NSNull null]) model.restTime = [key objectForKey:@"RestTime"] ;
+               if ((NSNull *)[key objectForKey:@"Late"] != [NSNull null]) model.late = [key objectForKey:@"Late"] ;
+               if ((NSNull *)[key objectForKey:@"LateTime"] != [NSNull null]) model.lateTime = [key objectForKey:@"LateTime"] ;
+               if ((NSNull *)[key objectForKey:@"Leave"] != [NSNull null]) model.leave = [key objectForKey:@"Leave"] ;
+               if ((NSNull *)[key objectForKey:@"NoCard"] != [NSNull null]) model.noCard = [key objectForKey:@"NoCard"] ;
+               if ((NSNull *)[key objectForKey:@"NoWork"] != [NSNull null])  model.noWork = [key objectForKey:@"NoWork"] ;
+               if ((NSNull *)[key objectForKey:@"LeaveTime"] != [NSNull null]) model.leaveTime = [key objectForKey:@"LeaveTime"] ;
+               if ((NSNull *)[key objectForKey:@"sLeaveTime"] != [NSNull null]) model.sleaveTime = [key objectForKey:@"sLeaveTime"] ;
+            
                 [mtJob addObject:model];
-                
-           // }
             
             [tableViewJob reloadData];
-        
-            
-            // 拿到当前的下拉刷新控件，结束刷新状态
-          //  [tableViewJob.header endRefreshing];
-
-            
-            
+         
+ 
         } else {
             [Utils showAllTextDialog: @"网络超时,请稍后再试!"];
         }
@@ -397,9 +340,9 @@
         formatter.dateFormat = @"yyyy-MM";
         
         NSString *timestamp = [formatter stringFromDate:datePicker0.date];
-        NSString *str = [NSString stringWithFormat:@".....:%@",timestamp];
+    //    NSString *str = [NSString stringWithFormat:@".....:%@",timestamp];
         
-        NSLog(@"%@", str);
+      //  NSLog(@"%@", str);
         
         
     }

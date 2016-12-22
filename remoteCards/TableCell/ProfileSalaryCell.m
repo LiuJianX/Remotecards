@@ -277,7 +277,7 @@
     lbl.text = @"扣社保:";
     [view3 addSubview:lbl];
     
-    _lblpSocialSecurity = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, view3.bounds.size.width , view3.bounds.size.height)];
+    _lblpSocialSecurity = [[UILabel alloc] initWithFrame:CGRectMake(47, 0, view3.bounds.size.width , view3.bounds.size.height)];
     _lblpSocialSecurity.font = HYQIHEISIZE(14);
     _lblpSocialSecurity.textColor  = NavFontColor;
     [view3 addSubview:_lblpSocialSecurity];
@@ -318,7 +318,7 @@
     lbl.text = @"有薪假:";
     [view3 addSubview:lbl];
     
-    _lblpLeaveSalary = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, view3.bounds.size.width , view3.bounds.size.height)];
+    _lblpLeaveSalary = [[UILabel alloc] initWithFrame:CGRectMake(47, 0, view3.bounds.size.width , view3.bounds.size.height)];
     _lblpLeaveSalary.font = HYQIHEISIZE(14);
     _lblpLeaveSalary.textColor  = NavFontColor;
     
@@ -333,7 +333,7 @@
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"签卡(次):";
     [view1 addSubview:lbl];
-    _lblsf_7 = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblsf_7 = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblsf_7.font = HYQIHEISIZE(14);
     _lblsf_7.textColor  = NavFontColor;
     [view1 addSubview:_lblsf_7];
@@ -346,7 +346,7 @@
     lbl.text = @"调休(天):";
     [view2 addSubview:lbl];
     
-    _lblsf_6 = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblsf_6 = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, view2.bounds.size.width , view2.bounds.size.height)];
     _lblsf_6.font = HYQIHEISIZE(14);
     _lblsf_6.textColor  = NavFontColor;
     [view2 addSubview:_lblsf_6];
@@ -358,7 +358,7 @@
     lbl.text = @"迟到(分):";
     [view3 addSubview:lbl];
     
-    _lblLateTime = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view3.bounds.size.width , view3.bounds.size.height)];
+    _lblLateTime = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, view3.bounds.size.width , view3.bounds.size.height)];
     _lblLateTime.font = HYQIHEISIZE(14);
     _lblLateTime.textColor  = NavFontColor;
     [view3 addSubview:_lblLateTime];
@@ -377,7 +377,7 @@
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"加班(工作日):";
     [view1 addSubview:lbl];
-    _lblpOverTime1 = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblpOverTime1 = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpOverTime1.font = HYQIHEISIZE(14);
     _lblpOverTime1.textColor  = NavFontColor;
     [view1 addSubview:_lblpOverTime1];
@@ -390,7 +390,7 @@
     lbl.text = @"加班(周末):";
     [view2 addSubview:lbl];
     
-    _lblpOverTime2 = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblpOverTime2 = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, view2.bounds.size.width , view2.bounds.size.height)];
     _lblpOverTime2.font = HYQIHEISIZE(14);
     _lblpOverTime2.textColor  = NavFontColor;
     [view2 addSubview:_lblpOverTime2];
@@ -417,7 +417,7 @@
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"出勤(工作日):";
     [view1 addSubview:lbl];
-    _lblpAttendance1 = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblpAttendance1 = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpAttendance1.font = HYQIHEISIZE(14);
     _lblpAttendance1.textColor  = NavFontColor;
     [view1 addSubview:_lblpAttendance1];
@@ -430,7 +430,7 @@
     lbl.text = @"出勤(周末):";
     [view2 addSubview:lbl];
     
-    _lblpAttendance2 = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblpAttendance2 = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, view2.bounds.size.width , view2.bounds.size.height)];
     _lblpAttendance2.font = HYQIHEISIZE(14);
     _lblpAttendance2.textColor  = NavFontColor;
     [view2 addSubview:_lblpAttendance2];
@@ -443,7 +443,7 @@
     lbl.text = @"出勤(节假日):";
     [view3 addSubview:lbl];
     
-    _lblpAttendance3 = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view3.bounds.size.width , view3.bounds.size.height)];
+    _lblpAttendance3 = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, view3.bounds.size.width , view3.bounds.size.height)];
     _lblpAttendance3.font = HYQIHEISIZE(14);
     _lblpAttendance3.textColor  = NavFontColor;
     [view3 addSubview:_lblpAttendance3];
@@ -457,7 +457,7 @@
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"缺勤(工作日):";
     [view1 addSubview:lbl];
-    _lblpNoWork1 = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblpNoWork1 = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpNoWork1.font = HYQIHEISIZE(14);
     _lblpNoWork1.textColor  = NavFontColor;
     [view1 addSubview:_lblpNoWork1];
@@ -484,7 +484,7 @@
     lbl.text = @"其他补扣:";
     [view3 addSubview:lbl];
     
-    _lblpOther = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view3.bounds.size.width , view3.bounds.size.height)];
+    _lblpOther = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, view3.bounds.size.width , view3.bounds.size.height)];
     _lblpOther.font = HYQIHEISIZE(14);
     _lblpOther.textColor  = NavFontColor;
     [view3 addSubview:_lblpOther];

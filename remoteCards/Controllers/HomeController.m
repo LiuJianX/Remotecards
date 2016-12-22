@@ -38,7 +38,6 @@
     NSMutableArray *tableData;
     
 }
-@property(nonatomic,weak) ZCTradeView *tradeViewCtr;
 @property (nonatomic,strong) NSMutableArray* Logs;
  @end
 
@@ -122,15 +121,7 @@
     activty.type = @"5";
     [tableData addObject:activty];
     
-    if ([studented.employee_ID isEqualToString:@"20163"] 
-        || [studented.employee_ID isEqualToString:@"20123"]) {
-        
-    activty = [[News alloc] init];
-    activty.title = @"我的信息";
-    activty.type = @"6";
-    [tableData addObject:activty];
     
-    }
     
     tableViewNews=[[UITableView alloc]initWithFrame:CGRectMake(0,60, self.view.frame.size.width,self.view.frame.size.height) style:UITableViewStyleGrouped];
     
@@ -253,7 +244,7 @@
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
   
     
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"V%@",app_Version]
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"%@",studented.name]
                                                                    style:UIBarButtonItemStyleDone  target:nil action:nil];
 
     [leftButton setTitleTextAttributes:@{NSFontAttributeName:HYQIHEISIZE(14)} forState:UIControlStateNormal];
@@ -435,73 +426,12 @@
  
         
     }else if ([newModel.type isEqualToString:@"6"]){ //
-        ZCTradeView* tvCtr =  [[ZCTradeView alloc] init];
-        [tvCtr show];
-        self.tradeViewCtr = tvCtr;
-
-        tvCtr.finish= ^(NSString *pwd){
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            hud.labelText = @"验证验证码中,请稍后...";
-            NSURL *url = [NSURL URLWithString:[urlServer stringByAppendingString:@"App/PwdVerify"]];
-            
-            ASIFormDataRequest *requestForm = [[ASIFormDataRequest alloc] initWithURL:url];
-            
-            [requestForm setPostValue:pwd forKey:@"pwd"];
-            
-            [requestForm setTimeOutSeconds:timeOut];
-            [requestForm setDelegate:self];
-            
-            [requestForm setDidFailSelector:@selector(requestFailed:)];
-            
-            [requestForm setDidFinishSelector:@selector(requestJobDidSuccess:)];
-            
-            
-            [requestForm startSynchronous];
-            
-        };
-
-
+      
         
     }
 }
 
 
-- (void)requestJobDidSuccess:(ASIHTTPRequest *)request
-{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    @try{
-        if (request.responseStatusCode == 200) {
-            
-             NSString *responseString = [request responseString];
-            NSMutableDictionary *responseDict = [responseString JSONValue];
-            NSString *err = [responseDict objectForKey:@"errMsg"];
-            if (![err isEqualToString:@""]) {
-                [Utils showAllTextDialog: err];
-                return;
-            }
-            
-                    ForgetPwdController *forget = [[ForgetPwdController alloc] init];
-                    forget.title = @"";
-                    [self.navigationController pushViewController:forget animated:YES];
-            
-        } else {
-            [Utils showAllTextDialog: @"网络超时,请稍后再试!"];
-        }
-    } @catch (NSException *exception) {
-        [Utils showAllTextDialog:[NSString stringWithFormat:@"发生错误,原因:%@",exception]];
-        
-    }@finally{
-        
-    }
-    
-}
-- (void)requestFailed:(ASIHTTPRequest *)request{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    [ Utils showAllTextDialog:@"网络超时,请稍后再试!"];
-    
-}
 
 
 

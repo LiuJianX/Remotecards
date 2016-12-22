@@ -314,6 +314,40 @@
 
     [self addSubview:view2];
 
+    
+    y = y + h;
+    
+    view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view1.bounds.size.height)];
+    
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"加班二上:";
+    [view1 addSubview:lbl];
+    
+    _lblOtIn2 = [[UILabel alloc] initWithFrame:CGRectMake(43, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblOtIn2.font = HYQIHEISIZE(14);
+    [view1 addSubview:_lblOtIn2];
+    
+    
+    [self addSubview:view1];
+    
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view2.bounds.size.height)];
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"加班二下:";
+    [view2 addSubview:lbl];
+    
+    _lblOtOut2 = [[UILabel alloc] initWithFrame:CGRectMake(43, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblOtOut2.font = HYQIHEISIZE(14);
+    [view2 addSubview:_lblOtOut2];
+    
+    
+    [self addSubview:view2];
+    
+
+    
     y = y + h;
     
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
@@ -356,6 +390,10 @@
     _lblNoCard.text = news.noCard;
     _lblVacation.text = news.vacation;
     _lblWorkHour.text = news.workHour;
+    
+    _lblOtIn2.text = news.otIn2;
+    _lblOtOut2.text = news.otOut2;
+    
    // _lblRestHour.text = news.restHour;
    // _lblWorkType.text = news.workType;
    // _lblWorkDays.text = news.workDays;

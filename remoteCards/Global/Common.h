@@ -53,7 +53,7 @@
 
 #define urlServer @"http://218.16.57.171:8083/"
 
-#define appUrl @"https://edpazure.esquel.cn/apps/hrcampus/prod/app.htm"
+#define appUrl @"https://edpazure.esquel.cn/apps/hrcampus/prod/card.htm"
 
 #define updateUrl @"https://edpazure.esquel.cn/apps/hrcampus/prod/Ver.js"
 

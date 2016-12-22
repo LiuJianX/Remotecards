@@ -24,6 +24,8 @@
     NSMutableArray *mtJob;
     NSArray *arrSelctedJob;
     NSString *jobName,*year,*month;
+    UITableViewHeaderFooterView *header;
+    
   
 }
  
@@ -112,6 +114,9 @@
     
     month = [dateFormatter stringFromDate:currentDate];
     
+    jobName = [NSString stringWithFormat:@"%@ 考勤月份：%@年%@月",studented.name,year,month];
+    
+    
     [self getJobData:year month:month];
     
     
@@ -167,6 +172,9 @@
         
         month = [dateFormat stringFromDate:datePicker.date];
        
+        jobName = [NSString stringWithFormat:@"%@ 考勤月份：%@年%@月",studented.name,year,month];
+        
+        
         [self getJobData:year month:month];
         
     }];
@@ -236,6 +244,26 @@
 }
 
 #pragma mark 返回每组行数
+
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return jobName;
+    
+}
+
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    view.tintColor = NavFontColor;
+    
+    header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:NavFontColor];
+    header.textLabel.font = HYQIHEISIZE(20);
+    header.textLabel.text = jobName;
+    
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return mtJob.count;
@@ -243,7 +271,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    return 1;
+    return 35;
     
 }
 
@@ -303,6 +331,11 @@
                 model.workOut2 = [key objectForKey:@"WorkOut2"] ;
                 model.otIn1 = [key objectForKey:@"OtIn1"] ;
                 model.otOut1 = [key objectForKey:@"OtOut1"] ;
+                
+                model.otIn2 = [key objectForKey:@"OtIn2"] ;
+                model.otOut2 = [key objectForKey:@"OtOut2"] ;
+                
+                
                 model.leave = [key objectForKey:@"Leave"] ;
                 model.ot = [key objectForKey:@"ot"] ;;
                 model.late = [key objectForKey:@"Late"] ;

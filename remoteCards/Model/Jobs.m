@@ -20,7 +20,7 @@
                workDays:(NSString *)workDays vac:(NSString *)vac remark:(NSString *)remark
               rplDirect:(NSString *)rplDirect rplHour:(NSString *)rplHour kResult:(NSString *)kResult
                    name:(NSString *)name departName:(NSString *) departName duty:(NSString *)duty
-               position:(NSString *)position{
+               position:(NSString *)position  otIn2:(NSString *) otIn2 otOut2:(NSString *)otOut2{
     
     if(self = [super init]){
         
@@ -52,6 +52,8 @@
         self.departName = departName;
         self.duty = duty;
         self.position = position;
+        self.otIn2 = otIn2;
+        self.otOut2  = otOut2;
     }
     
     

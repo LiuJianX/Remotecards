@@ -20,6 +20,8 @@
 #import <CommonCrypto/CommonCryptor.h>
 #import "UpdatePwdViewController.h"
 #import "QRCodeGenerator.h"
+#import "ZCTradeView.h"
+#import "ForgetPwdController.h"
 
 @interface PersonViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>{
     
@@ -29,6 +31,8 @@
     NSString *jobName,*year,*month,*updatePath;
     UITableViewHeaderFooterView *header;
 }
+
+@property(nonatomic,weak) ZCTradeView *tradeViewCtr;
 
 @end
 
@@ -146,6 +150,41 @@
         
     };
     
+    
+    
+    cell.buttonTestBlock = ^(ProfileCell *cellJob){
+        
+        ZCTradeView* tvCtr =  [[ZCTradeView alloc] init];
+        [tvCtr show];
+        self.tradeViewCtr = tvCtr;
+        
+        tvCtr.finish= ^(NSString *pwd){
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.labelText = @"验证验证码中,请稍后...";
+            NSURL *url = [NSURL URLWithString:[urlServer stringByAppendingString:@"App/PwdVerify"]];
+            
+            ASIFormDataRequest *requestForm = [[ASIFormDataRequest alloc] initWithURL:url];
+            
+            [requestForm setPostValue:pwd forKey:@"pwd"];
+            
+            [requestForm setTimeOutSeconds:timeOut];
+            [requestForm setDelegate:self];
+            
+            [requestForm setDidFailSelector:@selector(requestFailed:)];
+            
+            [requestForm setDidFinishSelector:@selector(requestJobDidSuccess:)];
+            
+            
+            [requestForm startSynchronous];
+            
+        };
+        
+
+        
+        
+    };
+    
+    
     cell.buttonUpdatePwdBlock = ^(ProfileCell *cellJob){
         
         [self checkVersion];
@@ -155,6 +194,45 @@
     return cell;
     
 }
+
+
+- (void)requestJobDidSuccess:(ASIHTTPRequest *)request
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    @try{
+        if (request.responseStatusCode == 200) {
+            
+            NSString *responseString = [request responseString];
+            NSMutableDictionary *responseDict = [responseString JSONValue];
+            NSString *err = [responseDict objectForKey:@"errMsg"];
+            if (![err isEqualToString:@""]) {
+                [Utils showAllTextDialog: err];
+                return;
+            }
+            
+            ForgetPwdController *forget = [[ForgetPwdController alloc] init];
+            forget.title = @"";
+            [self.navigationController pushViewController:forget animated:YES];
+            
+        } else {
+            [Utils showAllTextDialog: @"网络超时,请稍后再试!"];
+        }
+    } @catch (NSException *exception) {
+        [Utils showAllTextDialog:[NSString stringWithFormat:@"发生错误,原因:%@",exception]];
+        
+    }@finally{
+        
+    }
+    
+}
+- (void)requestFailed:(ASIHTTPRequest *)request{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    [ Utils showAllTextDialog:@"网络超时,请稍后再试!"];
+    
+}
+
 #pragma mark - 数据源方法
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

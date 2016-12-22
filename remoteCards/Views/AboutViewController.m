@@ -23,6 +23,7 @@
     BOOL isFrist;
     NSMutableArray* buttons;
     MZTimerLabel *timerServTime,*timerDownCount;
+    float mapY;
     
 }
 
@@ -226,11 +227,11 @@
     float x = 3; //[Utils getScreenWidth] - 110;
     
     buttons = [NSMutableArray arrayWithCapacity:3];
-    CGRect btnRect = CGRectMake(x, 70, 230, 40);
+    CGRect btnRect = CGRectMake(x, 70, 230, 35);
     for (NSString* optionTitle in @[@"上班卡", @"下班卡"]) {
         RadioButton* btn = [[RadioButton alloc] initWithFrame:btnRect];
         [btn addTarget:self action:@selector(onRadioButtonValueChanged:) forControlEvents:UIControlEventValueChanged];
-        btnRect.origin.y += 40;
+        btnRect.origin.y += 30;
         [btn setTitle:optionTitle forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.titleLabel.font = HYQIHEISIZE(18);
@@ -248,7 +249,7 @@
     [buttons[0] setSelected:YES]; // Making the first button initially selected
     
     
-    _lblServ  = [[UILabel alloc] initWithFrame:CGRectMake(x, 85 + 70, 230,20)];
+    _lblServ  = [[UILabel alloc] initWithFrame:CGRectMake(x, 65 + 70, 230,20)];
     
     _lblServ.text=@"服务器时间";
     [_lblServ setFont:HYQIHEISIZE(16)];
@@ -258,14 +259,14 @@
     [dateFormatter setDateFormat:@"HH:mm:ss"];
     NSString *strDate = [dateFormatter stringFromDate:[NSDate date]];
     
-    _lblServDate  = [[UILabel alloc] initWithFrame:CGRectMake(x, 105 + 70, 230,30)];
+    _lblServDate  = [[UILabel alloc] initWithFrame:CGRectMake(x, 80 + 70, 230,30)];
     [_lblServDate setTextAlignment:NSTextAlignmentLeft];
     [_lblServDate setFont:HYQIHEISIZE(18)];
     //  [_lblServDate setTextColor:NavFontColor];
     _lblServDate.text = strDate ;
     [self.view addSubview:_lblServDate];
     
-    _lblServTime  = [[UILabel alloc] initWithFrame:CGRectMake(x, 130 + 70, 230,30)];
+    _lblServTime  = [[UILabel alloc] initWithFrame:CGRectMake(x, 100 + 70, 230,30)];
     
     [_lblServTime setTextAlignment:NSTextAlignmentLeft];
     [_lblServTime setFont:HYQIHEISIZE(18)];
@@ -274,14 +275,14 @@
     [self.view addSubview:_lblServTime];
     
     
-    UILabel *label1  = [[UILabel alloc] initWithFrame:CGRectMake(x, 155 + 70, 230,30)];
+    UILabel *label1  = [[UILabel alloc] initWithFrame:CGRectMake(x, 123 + 70, 230,30)];
     
     label1.text=@"纬度";
     [label1 setFont:HYQIHEISIZE(18)];
     [self.view addSubview:label1];
     
     
-    _lblLat = [[UILabel alloc] initWithFrame:CGRectMake(x, 180 + 70, 230,30)];
+    _lblLat = [[UILabel alloc] initWithFrame:CGRectMake(x, 143 + 70, 230,30)];
     
     _lblLat.text=@"888.888888";
     [_lblLat setFont:HYQIHEISIZE(18)];
@@ -289,7 +290,7 @@
     [self.view addSubview:_lblLat];
     
     
-    UILabel *label2  = [[UILabel alloc] initWithFrame:CGRectMake(x, 205 + 70, 230,30)];
+    UILabel *label2  = [[UILabel alloc] initWithFrame:CGRectMake(x, 165 + 70, 230,30)];
     
     label2.text=@"经度";
     [label2 setFont:HYQIHEISIZE(18)];
@@ -297,7 +298,7 @@
     [self.view addSubview:label2];
     
     
-    _lblLon = [[UILabel alloc] initWithFrame:CGRectMake(x, 230 + 70, 230,30)];
+    _lblLon = [[UILabel alloc] initWithFrame:CGRectMake(x, 185 + 70, 230,30)];
     
     _lblLon.text=@"888.888889";
     [_lblLon setFont:HYQIHEISIZE(18)];
@@ -313,16 +314,20 @@
     _focusView.hidden = YES;
     
     
-    _btnCheckUpdate = [[UIButton alloc] initWithFrame:CGRectMake(x,280 + 70,98, 55)];
-    _btnCheckUpdate.backgroundColor = NavFontColor;
-    [_btnCheckUpdate setTitle:@"打卡"  forState:UIControlStateNormal];
-    [_btnCheckUpdate addTarget:self action:@selector(shutterCamera:) forControlEvents:UIControlEventTouchUpInside];
-    _btnCheckUpdate.titleLabel.font = HYQIHEISIZE(26);
-    [self.view addSubview:_btnCheckUpdate];
+    
     
     
     float fh = [Utils getScreenHeight] / 5 * 2;
     float fh2 = [Utils getScreenHeight] / 5 * 3;
+   
+    
+    if(fh2 < 290){
+        
+        fh2 = fh2 + (290 - fh2);
+        
+    }
+    //340
+   
     
     UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, fh2, [Utils getScreenWidth], 1)];
     imgLine.image = [UIImage imageNamed:@"login_textfield_mid"];
@@ -334,6 +339,18 @@
     [_btnBack addTarget:self action:@selector(getMapBack:) forControlEvents:UIControlEventTouchUpInside];
     _btnBack.titleLabel.font = HYQIHEISIZE(16);
     [self.view addSubview:_btnBack];
+    
+    float butY = 215 + 70;
+    
+    if (fh2 - 290 > 80){
+        butY += ((fh2 - 290) / 3);
+    }
+    _btnCheckUpdate = [[UIButton alloc] initWithFrame:CGRectMake(x,butY,98, 50)];
+    _btnCheckUpdate.backgroundColor = NavFontColor;
+    [_btnCheckUpdate setTitle:@"打卡"  forState:UIControlStateNormal];
+    [_btnCheckUpdate addTarget:self action:@selector(shutterCamera:) forControlEvents:UIControlEventTouchUpInside];
+    _btnCheckUpdate.titleLabel.font = HYQIHEISIZE(26);
+    [self.view addSubview:_btnCheckUpdate];
     
     [self initServerTime];
     
@@ -418,6 +435,11 @@
 
 - (void) shutterCamera:(id)sender {
    
+    if([_lblServTime.text isEqualToString:@""]){
+        
+        [Utils showMBAllTextDialog:@"服务器时间获取失败,不允许进行打卡." view:self.view];
+        return;
+    }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"打卡中,请稍候...";
@@ -826,14 +848,12 @@
             [self.session addOutput:self.ImageOutPut];
         }
         
-        // self.device = [self cameraWithPosition:AVCaptureDevicePositionFront];
-        //animation.subtype = kCATransitionFromRight;
         
         //使用self.session，初始化预览层，self.session负责驱动input进行信息的采集，layer负责把图像渲染显示
         self.previewLayer = [[AVCaptureVideoPreviewLayer alloc]initWithSession:self.session];
         
-        float fh = [Utils getScreenHeight] / 5 * 3;
-        //  float fh2 = [Utils getScreenHeight] / 3 * 2;
+        float fh = [Utils getScreenHeight] - _viewMap.bounds.size.height -  65;
+        
         
         self.previewLayer.frame = CGRectMake(110, 63, [Utils getScreenWidth] , fh);
         
@@ -870,11 +890,10 @@
         [Utils showMBAllTextDialog:@"未获取到当前登录用户名称,请重新登录." view:self.view];
         return;
     }
-    if([_lblServTime.text isEqualToString:@""]){
-        
-        [Utils showMBAllTextDialog:@"服务器时间获取失败,不允许进行打卡." view:self.view];
-        return;
-    }
+    [self initContorl];
+    
+    
+  
     _canCa = [self canUserCamear];
     if (_canCa) {
         [self customCamera];
@@ -899,10 +918,7 @@
     
     self.navigationItem.rightBarButtonItem = rightButton;
     
-    
-    
-    [self initContorl];
-    
+   
     [self initAMapView];
     
     [self configLocationManager];

@@ -112,6 +112,19 @@
     [view1 addSubview:_lblVer];
     
     
+    if ([stu.employee_ID isEqualToString:@"20163"]
+        || [stu.employee_ID isEqualToString:@"20123"]) {
+        
+    UIButton *btnTest = [[UIButton alloc] init];
+    [btnTest setFrame:CGRectMake(150 , 0, view1.bounds.size.width, 25)];
+    [btnTest setTitle:@"测试" forState:UIControlStateNormal];
+    [btnTest addTarget:self action:@selector(btnTest) forControlEvents:UIControlEventTouchUpInside];
+    btnTest.titleLabel.font =  HYQIHEISIZE(12);
+  //  [btnTest setBackgroundColor:NavFontColor];
+    
+    [view1 addSubview:btnTest];
+    
+    }
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
@@ -157,6 +170,13 @@
     [self addSubview:_lblTip];
 
 
+    
+}
+
+-(void)btnTest{
+    
+    self.buttonTestBlock(self);
+    
     
 }
 

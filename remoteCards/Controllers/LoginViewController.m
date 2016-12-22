@@ -292,16 +292,7 @@
                 return;
             }
             
-            Boolean isChange= [[responseDict objectForKey:@"isChange"] boolValue];
-            
-            if(isChange){
-                
-                UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"为了个人资料安全,请先修改密码" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil ];
-                [alterView show];
-                
-
-                return;
-            }
+           
             
             StudentMaster* testObj = [[StudentMaster alloc] init];
             
@@ -322,6 +313,18 @@
             anser.answerTitle= testObj.employee_ID;
             
             [Utils savePaperAnswerObject:anser];
+            
+            Boolean isChange= [[responseDict objectForKey:@"isChange"] boolValue];
+            
+            if(isChange){
+                
+                UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"系统提示" message:@"为了个人资料安全,请先修改密码" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil ];
+                [alterView show];
+                
+                
+                return;
+            }
+            
           
             [[NSNotificationCenter defaultCenter] postNotificationName:@"callCreateMenu" object:self];
             
