@@ -101,7 +101,7 @@
     //设置代理
     tableViewJob.delegate=self;
     
-    tableViewJob.rowHeight = 210;
+    tableViewJob.rowHeight = 240;
     
     
     [self.view addSubview:tableViewJob];
@@ -113,7 +113,10 @@
     [dateFormatter setDateFormat:@"M"];
     
     month = [dateFormatter stringFromDate:currentDate];
-    
+    if ([month isEqualToString:@"0"]){
+        month = @"1";
+    }
+        
     jobName = [NSString stringWithFormat:@"%@ 考勤月份：%@年%@月",studented.name,year,month];
     
     

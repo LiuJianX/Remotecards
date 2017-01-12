@@ -33,7 +33,7 @@
     
     UIButton *btnLogin = [[UIButton alloc] init];
     [btnLogin setFrame:CGRectMake(20 , 80, 150, 34)];
-    [btnLogin setTitle:@"游戏一(下)" forState:UIControlStateNormal];
+    [btnLogin setTitle:@"游戏一(上)" forState:UIControlStateNormal];
     [btnLogin addTarget:self action:@selector(btnConfirm:) forControlEvents:UIControlEventTouchUpInside];
     btnLogin.titleLabel.font =  HYQIHEISIZE(14);
     [btnLogin setBackgroundColor:NavFontColor];

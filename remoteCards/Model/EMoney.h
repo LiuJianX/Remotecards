@@ -14,8 +14,10 @@
 @property (nonatomic,copy) NSString *pPaySalary;
 @property (nonatomic,copy) NSString *TotalSalary;
 @property (nonatomic,copy) NSString *sBasicSalary;
+@property (nonatomic,copy) NSString *pBasicSalary;
 @property (nonatomic,copy) NSString *ShouldHousing;
 @property (nonatomic,copy) NSString *pBonus;
+@property (nonatomic,copy) NSString *sBonus;
 @property (nonatomic,copy) NSString *pOther;
 @property (nonatomic,copy) NSString *sSatOvertime;
 @property (nonatomic,copy) NSString *pSatOvertime;
@@ -50,8 +52,11 @@
 -(EMoney *)initWithTitle :(NSString *)pPaySalary
               TotalSalary:(NSString *)TotalSalary
              sBasicSalary:(NSString *)sBasicSalary
+             pBasicSalary:(NSString *)pBasicSalary
             ShouldHousing:(NSString *)ShouldHousing
                    pBonus:(NSString *)pBonus
+                   sBonus:(NSString *)sBonus
+
                    pOther:(NSString *)pOther
              sSatOvertime:(NSString *)sSatOvertime
              pSatOvertime:(NSString *)pSatOvertime

@@ -70,9 +70,9 @@
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"应发薪酬:";
     [view1 addSubview:lbl];
-    _lblsBasicSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
-    _lblsBasicSalary.font = HYQIHEISIZE(14);
-    [view1 addSubview:_lblsBasicSalary];
+    _lblpBasicSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblpBasicSalary.font = HYQIHEISIZE(14);
+    [view1 addSubview:_lblpBasicSalary];
     
     
     view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
@@ -80,11 +80,37 @@
     lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view2.bounds.size.height)];
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"实发薪酬:";[view2 addSubview:lbl];
-    _lblpBonus = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
-    _lblpBonus.font = HYQIHEISIZE(14);
-    _lblpBonus.textColor  = NavFontColor;
-    [view2 addSubview:_lblpBonus];
+    _lblsBasicSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblsBasicSalary.font = HYQIHEISIZE(14);
+    _lblsBasicSalary.textColor  = NavFontColor;
+    [view2 addSubview:_lblsBasicSalary];
     
+    
+    
+    y = y + h;
+    view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
+    [self addSubview:view1];
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view1.bounds.size.height)];
+    
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"应发奖金:";
+    [view1 addSubview:lbl];
+    _lblpBonus = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblpBonus.font = HYQIHEISIZE(14);
+    [view1 addSubview:_lblpBonus];
+    
+    
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    [self addSubview:view2];
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view2.bounds.size.height)];
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"实发奖金:";[view2 addSubview:lbl];
+    _lblsBonus = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblsBonus.font = HYQIHEISIZE(14);
+    _lblsBonus.textColor  = NavFontColor;
+    [view2 addSubview:_lblsBonus];
+    
+
     
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
@@ -234,7 +260,7 @@
     _lblpSocialSecurityBasic.textColor  = NavFontColor;
     [view2 addSubview:_lblpSocialSecurityBasic];
     
-     imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, y, [Utils getScreenWidth], 1)];
+    imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, y, [Utils getScreenWidth], 1)];
     imgLine.image = [UIImage imageNamed:@"login_textfield_mid"];
     [self addSubview:imgLine];
     
@@ -285,6 +311,7 @@
     
     ///////
     y = y + h;
+    
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
     lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
@@ -497,6 +524,8 @@
     _lblpPaySalary.text = model.pPaySalary ;
     _lblTotalSalary.text = model.TotalSalary ;
     _lblsBasicSalary.text = model.sBasicSalary;
+    _lblpBasicSalary.text = model.pBasicSalary;
+    _lblsBonus.text = model.sBonus;
     _lblShouldHousing.text = model.ShouldHousing ;
     _lblpBonus.text = model.pBonus ;
     _lblpOther.text = model.pOther;

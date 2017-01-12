@@ -12,9 +12,13 @@
 
 -(EMoney *)initWithTitle :(NSString *)pPaySalary
               TotalSalary:(NSString *)TotalSalary
+
              sBasicSalary:(NSString *)sBasicSalary
+             pBasicSalary:(NSString *)pBasicSalary
             ShouldHousing:(NSString *)ShouldHousing
                    pBonus:(NSString *)pBonus
+                   sBonus:(NSString *)sBonus
+
                    pOther:(NSString *)pOther
              sSatOvertime:(NSString *)sSatOvertime
              pSatOvertime:(NSString *)pSatOvertime
@@ -49,6 +53,8 @@
         self.pPaySalary = pPaySalary;
         self.TotalSalary = TotalSalary;
         self.sBasicSalary = sBasicSalary;
+        self.pBasicSalary = pBasicSalary;
+        self.sBonus = sBonus;
         self.ShouldHousing = ShouldHousing;
         self.pBonus = pBonus;
         self.pOther = pOther;

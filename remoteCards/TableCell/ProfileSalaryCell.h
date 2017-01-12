@@ -16,8 +16,12 @@
 @property (nonatomic,strong) UILabel *lblpPaySalary;
 @property (nonatomic,strong) UILabel *lblTotalSalary;
 @property (nonatomic,strong) UILabel *lblsBasicSalary;
+@property (nonatomic,strong) UILabel *lblpBasicSalary;
 @property (nonatomic,strong) UILabel *lblShouldHousing;
 @property (nonatomic,strong) UILabel *lblpBonus;
+
+@property (nonatomic,strong) UILabel *lblsBonus;
+
 @property (nonatomic,strong) UILabel *lblpOther;
 @property (nonatomic,strong) UILabel *lblsSatOvertime;
 @property (nonatomic,strong) UILabel *lblpSatOvertime;

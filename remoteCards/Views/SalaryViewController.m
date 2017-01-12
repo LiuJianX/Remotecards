@@ -96,7 +96,7 @@
     //设置代理
     tableViewJob.delegate=self;
     
-    tableViewJob.rowHeight = 210;
+    tableViewJob.rowHeight = 500;
     
     
     [self.view addSubview:tableViewJob];
@@ -114,6 +114,11 @@
         
         month = [NSString stringWithFormat:@"%ld",(long)tempMonth];
     }
+    
+    if ([month isEqualToString:@"0"]){
+        month = @"1";
+    }
+
     
     [self getJobData:year month:month];
     
@@ -301,6 +306,10 @@
             model.pPaySalary = [self getDecrypt:[key objectForKey:@"pPaySalary"]];
             model.TotalSalary = [self getDecrypt:[key objectForKey:@"TotalSalary"]];
             model.sBasicSalary = [self getDecrypt:[key objectForKey:@"sBasicSalary"]];
+            
+            model.pBasicSalary = [self getDecrypt:[key objectForKey:@"pBasicSalary"]];
+            model.sBonus = [self getDecrypt:[key objectForKey:@"sBonus"]];
+            
             model.ShouldHousing = [self getDecrypt:[key objectForKey:@"ShouldHousing"]];
             model.pBonus = [self getDecrypt:[key objectForKey:@"pBonus"]];
             model.pOther =   [self getDecrypt:[key objectForKey:@"pOther"]];
