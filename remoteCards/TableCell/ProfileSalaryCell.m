@@ -35,26 +35,33 @@
     UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view1.bounds.size.height)];
-    
-    lbl.font = HYQIHEISIZE(12);
-    lbl.text = @"应发合计:";
-    [view1 addSubview:lbl];
-    _lblTotalSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
-    _lblTotalSalary.font = HYQIHEISIZE(14);
-    [view1 addSubview:_lblTotalSalary];
-    
     
     UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
     [self addSubview:view2];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view2.bounds.size.height)];
+    
+    
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view2.bounds.size.height)];
+    
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"应发合计:";
+   
+    _lblTotalSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblTotalSalary.font = HYQIHEISIZE(14);
+    [view2 addSubview:lbl];
+    [view2 addSubview:_lblTotalSalary];
+    [view2 setHidden:YES];
+    
+   
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view1.bounds.size.height)];
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"实发合计:";
-    _lblpPaySalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblpPaySalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpPaySalary.font = HYQIHEISIZE(14);
     _lblpPaySalary.textColor  = NavFontColor;
-    [view2 addSubview:_lblpPaySalary];
-    [view2 addSubview:lbl];
+    [view1 addSubview:_lblpPaySalary];
+    [view1 addSubview:lbl];
+    
+    
     
     UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 30, [Utils getScreenWidth], 1)];
     imgLine.image = [UIImage imageNamed:@"login_textfield_mid"];
@@ -65,174 +72,200 @@
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view1.bounds.size.height)];
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    [self addSubview:view2];
+    [view2 setHidden:YES];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view2.bounds.size.height)];
     
     lbl.font = HYQIHEISIZE(12);
-    lbl.text = @"应发薪酬:";
+    lbl.text = @"应发底薪:";
+    [view2 addSubview:lbl];
+    _lblsBasicSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblsBasicSalary.font = HYQIHEISIZE(14);
+    [view2 addSubview:_lblsBasicSalary];
+    
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view1.bounds.size.height)];
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"实发底薪:";
     [view1 addSubview:lbl];
     _lblpBasicSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpBasicSalary.font = HYQIHEISIZE(14);
+    _lblpBasicSalary.textColor  = NavFontColor;
     [view1 addSubview:_lblpBasicSalary];
-    
-    
-    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
-    [self addSubview:view2];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view2.bounds.size.height)];
-    lbl.font = HYQIHEISIZE(12);
-    lbl.text = @"实发薪酬:";[view2 addSubview:lbl];
-    _lblsBasicSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
-    _lblsBasicSalary.font = HYQIHEISIZE(14);
-    _lblsBasicSalary.textColor  = NavFontColor;
-    [view2 addSubview:_lblsBasicSalary];
     
     
     
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    [self addSubview:view2];
+    [view2 setHidden:YES];
+    
     lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view1.bounds.size.height)];
     
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"应发奖金:";
-    [view1 addSubview:lbl];
-    _lblpBonus = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
-    _lblpBonus.font = HYQIHEISIZE(14);
-    [view1 addSubview:_lblpBonus];
+    [view2 addSubview:lbl];
+    _lblsBonus = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblsBonus.font = HYQIHEISIZE(14);
+    [view2 addSubview:_lblsBonus];
     
     
-    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
-    [self addSubview:view2];
     lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, view2.bounds.size.height)];
     lbl.font = HYQIHEISIZE(12);
-    lbl.text = @"实发奖金:";[view2 addSubview:lbl];
-    _lblsBonus = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
-    _lblsBonus.font = HYQIHEISIZE(14);
-    _lblsBonus.textColor  = NavFontColor;
-    [view2 addSubview:_lblsBonus];
+    lbl.text = @"实发奖金:";
+    [view1 addSubview:lbl];
+    _lblpBonus = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblpBonus.font = HYQIHEISIZE(14);
+    _lblpBonus.textColor  = NavFontColor;
+    [view1 addSubview:_lblpBonus];
     
 
     
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    [self addSubview:view2];
+    [view2 setHidden:YES];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
     
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"应发周六加班费:";
-    [view1 addSubview:lbl];
-    _lblsSatOvertime = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    [view2 addSubview:lbl];
+    _lblsSatOvertime = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
     _lblsSatOvertime.font = HYQIHEISIZE(14);
-    [view1 addSubview:_lblsSatOvertime];
+    [view2 addSubview:_lblsSatOvertime];
     
     
-    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
-    [self addSubview:view2];    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
     lbl.font = HYQIHEISIZE(12);
-    lbl.text = @"实发周六加班费:";[view2 addSubview:lbl];
+    lbl.text = @"实发周六加班费:";
+    [view1 addSubview:lbl];
     
-    _lblpSatOvertime = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblpSatOvertime = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpSatOvertime.font = HYQIHEISIZE(14);
     _lblpSatOvertime.textColor  = NavFontColor;
-    [view2 addSubview:_lblpSatOvertime];
+    [view1 addSubview:_lblpSatOvertime];
     
     
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
+    
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    [self addSubview:view2];
+    [view2 setHidden:YES];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
     
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"应发话费补贴:";
-    [view1 addSubview:lbl];
-    _lblsPhone = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    [view2 addSubview:lbl];
+    _lblsPhone = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
     _lblsPhone.font = HYQIHEISIZE(14);
-    [view1 addSubview:_lblsPhone];
+    [view2 addSubview:_lblsPhone];
     
     
-    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
-    [self addSubview:view2];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
     lbl.font = HYQIHEISIZE(12);
-    lbl.text = @"实发话费补贴:";[view2 addSubview:lbl];
-    _lblpPhone = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    lbl.text = @"实发话费补贴:";
+    [view1 addSubview:lbl];
+    _lblpPhone = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpPhone.font = HYQIHEISIZE(14);
     _lblpPhone.textColor  = NavFontColor;
-    [view2 addSubview:_lblpPhone];
+    [view1 addSubview:_lblpPhone];
     
     
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    [self addSubview:view2];
+    [view2 setHidden:YES];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
     
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"应发浮动工资:";
-    [view1 addSubview:lbl];
-    _lblsFloatSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    [view2 addSubview:lbl];
+    _lblsFloatSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
     _lblsFloatSalary.font = HYQIHEISIZE(14);
-    [view1 addSubview:_lblsFloatSalary];
+    [view2 addSubview:_lblsFloatSalary];
     
     
-    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
-    [self addSubview:view2];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
     lbl.font = HYQIHEISIZE(12);
-    lbl.text = @"实发浮动工资:";[view2 addSubview:lbl];
-    _lblpFloatSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    lbl.text = @"实发浮动工资:";
+    [view1 addSubview:lbl];
+    _lblpFloatSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpFloatSalary.font = HYQIHEISIZE(14);
     _lblpFloatSalary.textColor  = NavFontColor;
-    [view2 addSubview:_lblpFloatSalary];
+    [view1 addSubview:_lblpFloatSalary];
     
     
     
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    [self addSubview:view2];
+    [view2 setHidden:YES];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
     
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"应发职位津贴:";
-    [view1 addSubview:lbl];
-    _lblPostionAllowance = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    [view2 addSubview:lbl];
+    _lblPostionAllowance = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
     _lblPostionAllowance.font = HYQIHEISIZE(14);
-    [view1 addSubview:_lblPostionAllowance];
+    [view2 addSubview:_lblPostionAllowance];
     
     
-    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
-    [self addSubview:view2];    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
     lbl.font = HYQIHEISIZE(12);
-    lbl.text = @"实发职位津贴:"; [view2 addSubview:lbl];
+    lbl.text = @"实发职位津贴:"; [view1 addSubview:lbl];
     
-    _lblpPostionAllowance = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblpPostionAllowance = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpPostionAllowance.font = HYQIHEISIZE(14);
     _lblpPostionAllowance.textColor  = NavFontColor;
     
-    [view2 addSubview:_lblpPostionAllowance];
+    [view1 addSubview:_lblpPostionAllowance];
     
     
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    [self addSubview:view2];
+    [view2 setHidden:YES];
+    
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
     
     lbl.font = HYQIHEISIZE(12);
     lbl.text = @"应发房补:";
-    [view1 addSubview:lbl];
-    _lblShouldHousing = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    [view2 addSubview:lbl];
+    _lblShouldHousing = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
     _lblShouldHousing.font = HYQIHEISIZE(14);
-    [view1 addSubview:_lblShouldHousing];
+    [view2 addSubview:_lblShouldHousing];
     
     
-    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
-    [self addSubview:view2];
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view2.bounds.size.height)];
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
     lbl.font = HYQIHEISIZE(12);
-    lbl.text = @"实发房补:";[view2 addSubview:lbl];
-    _lblpHousing = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    lbl.text = @"实发房补:";
+    [view1 addSubview:lbl];
+    _lblpHousing = [[UILabel alloc] initWithFrame:CGRectMake(90, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblpHousing.font = HYQIHEISIZE(14);
     _lblpHousing.textColor  = NavFontColor;
     
-    [view2 addSubview:_lblpHousing];
+    [view1 addSubview:_lblpHousing];
     
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
