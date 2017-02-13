@@ -47,7 +47,8 @@
                  pNoWork2:(NSString *)pNoWork2
              pAttendance1:(NSString *)pAttendance1
              pAttendance2:(NSString *)pAttendance2
-             pAttendance3:(NSString *)pAttendance3{
+             pAttendance3:(NSString *)pAttendance3
+              pCashSalary:(NSString *)pCashSalary{
     if(self = [super init]){
         
         self.pPaySalary = pPaySalary;
@@ -78,6 +79,7 @@
         self.Vacation = Vacation;
         self.NoWork = NoWork;
         self.pOverTime1 = pOverTime1;
+        self.pCashSalary = pCashSalary;
         self.pOverTime2 = pOverTime2;
         self.pOverTime3 = pOverTime3;
         self.pLeaveSalary = pLeaveSalary;

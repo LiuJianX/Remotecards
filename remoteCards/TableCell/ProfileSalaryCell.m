@@ -123,8 +123,6 @@
     _lblpBonus.textColor  = NavFontColor;
     [view1 addSubview:_lblpBonus];
     
-
-    
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
@@ -267,6 +265,8 @@
     
     [view1 addSubview:_lblpHousing];
     
+       w = [Utils getScreenWidth] / 3;
+    
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
@@ -298,8 +298,23 @@
     [self addSubview:imgLine];
     
     
+    UIView *view3 = [[UIView alloc] initWithFrame:CGRectMake(8 + w + w, y, w, h)];
+    [self addSubview:view3];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view3.bounds.size.height)];
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"扣所得税:";
+    [view3 addSubview:lbl];
+    
+    _lblpCashSalary = [[UILabel alloc] initWithFrame:CGRectMake(47, 0, view3.bounds.size.width , view3.bounds.size.height)];
+    _lblpCashSalary.font = HYQIHEISIZE(14);
+    _lblpCashSalary.textColor  = NavFontColor;
+    
+    [view3 addSubview:_lblpCashSalary];
+    
+    
     //////////
-    w = [Utils getScreenWidth] / 3;
+//  w = [Utils getScreenWidth] / 3;
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
     [self addSubview:view1];
@@ -328,7 +343,7 @@
     
     [view2 addSubview:_lblpLate];
     
-    UIView *view3 = [[UIView alloc] initWithFrame:CGRectMake(8 + w + w, y, w, h)];
+     view3 = [[UIView alloc] initWithFrame:CGRectMake(8 + w + w, y, w, h)];
     [self addSubview:view3];
     
     lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view3.bounds.size.height)];
@@ -577,6 +592,7 @@
     _lblpSocialSecurity.text = model.pSocialSecurity ;
     _lblpSocialSecurityBasic.text = model.pSocialSecurityBasic ;
     _lblsf_7.text = model.sf_7 ;
+    _lblpCashSalary.text = model.pCashSalary;
     _lblsf_6.text = model.sf_6;
     _lblLateTime.text = model.LateTime ;
     _lblVacation.text = model.Vacation ;

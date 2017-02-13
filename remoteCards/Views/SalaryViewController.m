@@ -327,6 +327,7 @@
             model.pFund = [self getDecrypt:[key objectForKey:@"pFund"]];
             model.pSocialSecurity = [self getDecrypt:[key objectForKey:@"pSocialSecurity"]];
             model.pSocialSecurityBasic =[self getDecrypt:[key objectForKey:@"pSocialSecurityBasic"]] ;
+            model.pCashSalary=[self getDecrypt:[key objectForKey:@"pCashSalary"]] ;
             model.sf_7 = [key objectForKey:@"sf_7"];
             model.sf_6 = [key objectForKey:@"sf_6"];
             model.LateTime = [key objectForKey:@"LateTime"];

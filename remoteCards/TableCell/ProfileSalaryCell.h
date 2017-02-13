@@ -46,6 +46,9 @@
 @property (nonatomic,strong) UILabel *lblpOverTime2;
 @property (nonatomic,strong) UILabel *lblpOverTime3;
 @property (nonatomic,strong) UILabel *lblpLeaveSalary;
+
+@property (nonatomic,strong) UILabel *lblpCashSalary;
+
 @property (nonatomic,strong) UILabel *lblpNoWork1;
 @property (nonatomic,strong) UILabel *lblpNoWork2;
 @property (nonatomic,strong) UILabel *lblpAttendance1;
