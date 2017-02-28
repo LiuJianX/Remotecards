@@ -306,7 +306,7 @@
     lbl.text = @"扣所得税:";
     [view3 addSubview:lbl];
     
-    _lblpCashSalary = [[UILabel alloc] initWithFrame:CGRectMake(47, 0, view3.bounds.size.width , view3.bounds.size.height)];
+    _lblpCashSalary = [[UILabel alloc] initWithFrame:CGRectMake(55, 0, view3.bounds.size.width , view3.bounds.size.height)];
     _lblpCashSalary.font = HYQIHEISIZE(14);
     _lblpCashSalary.textColor  = NavFontColor;
     

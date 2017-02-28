@@ -30,6 +30,7 @@
 #import "ZCTradeView.h"
 #import "MBProgressHUD+MJ.h"
 #import "UpdatePwdViewController.h"
+#import "AdjustSalaryController.h"
 
 
 @interface HomeController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate
@@ -121,7 +122,10 @@
     activty.type = @"5";
     [tableData addObject:activty];
     
-    
+    activty = [[News alloc] init];
+    activty.title = @"我的调薪单";
+    activty.type = @"6";
+    [tableData addObject:activty];
     
     tableViewNews=[[UITableView alloc]initWithFrame:CGRectMake(0,60, self.view.frame.size.width,self.view.frame.size.height) style:UITableViewStyleGrouped];
     
@@ -403,8 +407,7 @@
         JobViewController *aboutCtr = [[JobViewController alloc] init];
         aboutCtr.title = newModel.title;
         [self.navigationController pushViewController:aboutCtr animated:YES];
-
-
+ 
     }else if ([newModel.type isEqualToString:@"3"]){ // 考勤结果
         ResultViewController *resultCtr = [[ResultViewController alloc] init];
         resultCtr.title = newModel.title;
@@ -423,10 +426,12 @@
         SalaryViewController *salaryView = [[SalaryViewController alloc] init];
         salaryView.title = newModel.title;
         [self.navigationController pushViewController:salaryView animated:YES];
- 
         
     }else if ([newModel.type isEqualToString:@"6"]){ //
-      
+        AdjustSalaryController *AdjSalaryView = [[AdjustSalaryController alloc] init];
+        AdjSalaryView.title = newModel.title;
+        [self.navigationController pushViewController:AdjSalaryView animated:YES];
+
         
     }
 }

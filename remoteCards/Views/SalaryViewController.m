@@ -290,58 +290,81 @@
             id key = [responseDict objectForKey:@"list"];
             
             NSString *str = [key objectForKey:@"pScore"] ;
-            
-           
-                    
             if ((NSNull *)[key objectForKey:@"pScore"]  == [NSNull null]
                 || [str isEqualToString:@""]) {
                 jobName = [NSString stringWithFormat:@"未找到%@年%@月的工资条",year,month];
-
                 header.textLabel.text = jobName;
-                 return;
+                return;
             
             }
             
             EMoney *model = [[EMoney alloc] init];
-            model.pPaySalary = [self getDecrypt:[key objectForKey:@"pPaySalary"]];
-            model.TotalSalary = [self getDecrypt:[key objectForKey:@"TotalSalary"]];
+            if ((NSNull *)[key objectForKey:@"pPaySalary"]  != [NSNull null])
+                model.pPaySalary = [self getDecrypt:[key objectForKey:@"pPaySalary"]];
+            
+            if ((NSNull *)[key objectForKey:@"TotalSalary"]  != [NSNull null])
+                model.TotalSalary = [self getDecrypt:[key objectForKey:@"TotalSalary"]];
+            
+            if ((NSNull *)[key objectForKey:@"sBasicSalary"]  != [NSNull null])
             model.sBasicSalary = [self getDecrypt:[key objectForKey:@"sBasicSalary"]];
-            
+            if ((NSNull *)[key objectForKey:@"pBasicSalary"]  != [NSNull null])
             model.pBasicSalary = [self getDecrypt:[key objectForKey:@"pBasicSalary"]];
+            if ((NSNull *)[key objectForKey:@"sBonus"]  != [NSNull null])
             model.sBonus = [self getDecrypt:[key objectForKey:@"sBonus"]];
-            
+            if ((NSNull *)[key objectForKey:@"ShouldHousing"]  != [NSNull null])
             model.ShouldHousing = [self getDecrypt:[key objectForKey:@"ShouldHousing"]];
+            if ((NSNull *)[key objectForKey:@"pBonus"]  != [NSNull null])
             model.pBonus = [self getDecrypt:[key objectForKey:@"pBonus"]];
+            if ((NSNull *)[key objectForKey:@"pOther"]  != [NSNull null])
             model.pOther =   [self getDecrypt:[key objectForKey:@"pOther"]];
+            if ((NSNull *)[key objectForKey:@"sSatOvertime"]  != [NSNull null])
             model.sSatOvertime = [self getDecrypt:[key objectForKey:@"sSatOvertime"]];
+            if ((NSNull *)[key objectForKey:@"pSatOvertime"]  != [NSNull null])
             model.pSatOvertime =  [self getDecrypt:[key objectForKey:@"pSatOvertime"]];
+            if ((NSNull *)[key objectForKey:@"sPhone"]  != [NSNull null])
             model.sPhone =  [self getDecrypt:[key objectForKey:@"sPhone"]];
+            if ((NSNull *)[key objectForKey:@"pPhone"]  != [NSNull null])
             model.pPhone =  [self getDecrypt:[key objectForKey:@"pPhone"]];
-            model.sFloatSalary =   [self getDecrypt:[key objectForKey:@"sFloatSalary"]];
+            if ((NSNull *)[key objectForKey:@"sFloatSalary"]  != [NSNull null])
+                model.sFloatSalary =   [self getDecrypt:[key objectForKey:@"sFloatSalary"]];
             model.pFloatSalary =   [self getDecrypt:[key objectForKey:@"pFloatSalary"]];
-            model.PostionAllowance = [self getDecrypt:[key objectForKey:@"PostionAllowance"]];
+            if ((NSNull *)[key objectForKey:@"PostionAllowance"]  != [NSNull null])
+                model.PostionAllowance = [self getDecrypt:[key objectForKey:@"PostionAllowance"]];
             model.pPostionAllowance = [self getDecrypt:[key objectForKey:@"pPostionAllowance"]];
-            model.pHousing = [self getDecrypt:[key objectForKey:@"pHousing"]];
+            if ((NSNull *)[key objectForKey:@"pHousing"]  != [NSNull null])
+                model.pHousing = [self getDecrypt:[key objectForKey:@"pHousing"]];
             model.pOvertimeSalary = [self getDecrypt:[key objectForKey:@"pOvertimeSalary"]];
-            model.pLate = [self getDecrypt:[key objectForKey:@"pLate"]];
+            if ((NSNull *)[key objectForKey:@"pLate"]  != [NSNull null])
+                model.pLate = [self getDecrypt:[key objectForKey:@"pLate"]];
             model.pFund = [self getDecrypt:[key objectForKey:@"pFund"]];
-            model.pSocialSecurity = [self getDecrypt:[key objectForKey:@"pSocialSecurity"]];
+            if ((NSNull *)[key objectForKey:@"pSocialSecurity"]  != [NSNull null])
+                model.pSocialSecurity = [self getDecrypt:[key objectForKey:@"pSocialSecurity"]];
             model.pSocialSecurityBasic =[self getDecrypt:[key objectForKey:@"pSocialSecurityBasic"]] ;
-            model.pCashSalary=[self getDecrypt:[key objectForKey:@"pCashSalary"]] ;
-            model.sf_7 = [key objectForKey:@"sf_7"];
-            model.sf_6 = [key objectForKey:@"sf_6"];
-            model.LateTime = [key objectForKey:@"LateTime"];
-            model.Vacation = [key objectForKey:@"Vacation"];
-            model.NoWork = [key objectForKey:@"NoWork"];
+            if ((NSNull *)[key objectForKey:@"pCashSalary"]  != [NSNull null])
+                 model.pCashSalary=[self getDecrypt:[key objectForKey:@"pCashSalary"]] ;
+            if ((NSNull *)[key objectForKey:@"sf_7"]  != [NSNull null])
+                model.sf_7 = [key objectForKey:@"sf_7"];
+            if ((NSNull *)[key objectForKey:@"sf_6"]  != [NSNull null])
+                model.sf_6 = [key objectForKey:@"sf_6"];
+            if ((NSNull *)[key objectForKey:@"LateTime"]  != [NSNull null])
+                model.LateTime = [key objectForKey:@"LateTime"];
+            if ((NSNull *)[key objectForKey:@"Vacation"]  != [NSNull null])
+                model.Vacation = [key objectForKey:@"Vacation"];
+            if ((NSNull *)[key objectForKey:@"NoWork"]  != [NSNull null])
+                model.NoWork = [key objectForKey:@"NoWork"];
+            if ((NSNull *)[key objectForKey:@"pOverTime1"]  != [NSNull null])
             model.pOverTime1 = [key objectForKey:@"pOverTime1"];
-            model.pOverTime2 = [key objectForKey:@"pOverTime2"];
-            model.pOverTime3 = [key objectForKey:@"pOverTime3"];
-            model.pLeaveSalary = [key objectForKey:@"pLeaveSalary"];
-            model.pNoWork1 = [key objectForKey:@"pNoWork1"];
-            model.pNoWork2 = [key objectForKey:@"pNoWork2"];
-            model.pAttendance1 =[key objectForKey:@"pAttendance1"] ;
-            model.pAttendance2 = [key objectForKey:@"pAttendance2"];
-            model.pAttendance3 = [key objectForKey:@"pAttendance3"];
+            if ((NSNull *)[key objectForKey:@"pOverTime2"]  != [NSNull null])
+                model.pOverTime2 = [key objectForKey:@"pOverTime2"];
+            if ((NSNull *)[key objectForKey:@"pOverTime3"]  != [NSNull null])
+                model.pOverTime3 = [key objectForKey:@"pOverTime3"];
+            if ((NSNull *)[key objectForKey:@"pLeaveSalary"]  != [NSNull null])
+                model.pLeaveSalary = [key objectForKey:@"pLeaveSalary"];
+            if ((NSNull *)[key objectForKey:@"pNoWork1"]  != [NSNull null])model.pNoWork1 = [key objectForKey:@"pNoWork1"];
+            if ((NSNull *)[key objectForKey:@"pNoWork2"]  != [NSNull null])model.pNoWork2 = [key objectForKey:@"pNoWork2"];
+            if ((NSNull *)[key objectForKey:@"pAttendance1"]  != [NSNull null])model.pAttendance1 =[key objectForKey:@"pAttendance1"] ;
+            if ((NSNull *)[key objectForKey:@"pAttendance2"]  != [NSNull null])model.pAttendance2 = [key objectForKey:@"pAttendance2"];
+            if ((NSNull *)[key objectForKey:@"pAttendance3"]  != [NSNull null])model.pAttendance3 = [key objectForKey:@"pAttendance3"];
             
             
             [mtJob addObject:model];

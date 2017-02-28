@@ -80,6 +80,11 @@
 		7645621B1DDB1E2C00DA5A79 /* ResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764562191DDB1E2C00DA5A79 /* ResultViewController.xib */; };
 		7645622E1DDB36FE00DA5A79 /* ForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7645622C1DDB36FE00DA5A79 /* ForgetPwdController.m */; };
 		7645622F1DDB36FE00DA5A79 /* ForgetPwdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7645622D1DDB36FE00DA5A79 /* ForgetPwdController.xib */; };
+		7690D9E91E651DAB0066AFCA /* AdjustSalaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7690D9E71E651DAB0066AFCA /* AdjustSalaryCell.m */; };
+		7690D9EA1E651DAB0066AFCA /* AdjustSalaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7690D9E81E651DAB0066AFCA /* AdjustSalaryCell.xib */; };
+		7690D9EE1E651DB60066AFCA /* AdjustSalaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7690D9EC1E651DB60066AFCA /* AdjustSalaryController.m */; };
+		7690D9EF1E651DB60066AFCA /* AdjustSalaryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7690D9ED1E651DB60066AFCA /* AdjustSalaryController.xib */; };
+		7690D9F21E651F2D0066AFCA /* AdjustSalary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7690D9F11E651F2D0066AFCA /* AdjustSalary.m */; };
 		76A6006B1DD1A0DA00EBD292 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A6FF291DD1A0DA00EBD292 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76A6006C1DD1A0DA00EBD292 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A6FF2C1DD1A0DA00EBD292 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76A6006D1DD1A0DA00EBD292 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A6FF2E1DD1A0DA00EBD292 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -285,6 +290,14 @@
 		7645622B1DDB36FE00DA5A79 /* ForgetPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdController.h; sourceTree = "<group>"; };
 		7645622C1DDB36FE00DA5A79 /* ForgetPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdController.m; sourceTree = "<group>"; };
 		7645622D1DDB36FE00DA5A79 /* ForgetPwdController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPwdController.xib; sourceTree = "<group>"; };
+		7690D9E61E651DAB0066AFCA /* AdjustSalaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustSalaryCell.h; sourceTree = "<group>"; };
+		7690D9E71E651DAB0066AFCA /* AdjustSalaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustSalaryCell.m; sourceTree = "<group>"; };
+		7690D9E81E651DAB0066AFCA /* AdjustSalaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdjustSalaryCell.xib; sourceTree = "<group>"; };
+		7690D9EB1E651DB60066AFCA /* AdjustSalaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustSalaryController.h; sourceTree = "<group>"; };
+		7690D9EC1E651DB60066AFCA /* AdjustSalaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustSalaryController.m; sourceTree = "<group>"; };
+		7690D9ED1E651DB60066AFCA /* AdjustSalaryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdjustSalaryController.xib; sourceTree = "<group>"; };
+		7690D9F01E651F2D0066AFCA /* AdjustSalary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjustSalary.h; sourceTree = "<group>"; };
+		7690D9F11E651F2D0066AFCA /* AdjustSalary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjustSalary.m; sourceTree = "<group>"; };
 		76A6016E1DD1A1FD00EBD292 /* AnswerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerData.h; sourceTree = "<group>"; };
 		76A6016F1DD1A1FD00EBD292 /* AnswerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerData.m; sourceTree = "<group>"; };
 		76A601701DD1A1FD00EBD292 /* EMoney.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMoney.h; sourceTree = "<group>"; };
@@ -558,6 +571,9 @@
 		762AED381DD30D4B0090B646 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7690D9EB1E651DB60066AFCA /* AdjustSalaryController.h */,
+				7690D9EC1E651DB60066AFCA /* AdjustSalaryController.m */,
+				7690D9ED1E651DB60066AFCA /* AdjustSalaryController.xib */,
 				7616EE3D1DDC5A9D00396984 /* UpdatePwdViewController.h */,
 				7616EE3E1DDC5A9D00396984 /* UpdatePwdViewController.m */,
 				7616EE3F1DDC5A9D00396984 /* UpdatePwdViewController.xib */,
@@ -682,6 +698,8 @@
 		76A6016D1DD1A1FD00EBD292 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7690D9F01E651F2D0066AFCA /* AdjustSalary.h */,
+				7690D9F11E651F2D0066AFCA /* AdjustSalary.m */,
 				76A6016E1DD1A1FD00EBD292 /* AnswerData.h */,
 				76A6016F1DD1A1FD00EBD292 /* AnswerData.m */,
 				76A601701DD1A1FD00EBD292 /* EMoney.h */,
@@ -712,6 +730,9 @@
 		76A601901DD1A6C100EBD292 /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
+				7690D9E61E651DAB0066AFCA /* AdjustSalaryCell.h */,
+				7690D9E71E651DAB0066AFCA /* AdjustSalaryCell.m */,
+				7690D9E81E651DAB0066AFCA /* AdjustSalaryCell.xib */,
 				76A601911DD1A6C100EBD292 /* ActivityViewCell.h */,
 				76A601921DD1A6C100EBD292 /* ActivityViewCell.m */,
 				76A601931DD1A6C100EBD292 /* ActivityViewCell.xib */,
@@ -1131,9 +1152,11 @@
 				7616EE261DDC08C300396984 /* ProfileCell.xib in Resources */,
 				764561F11DD9CD4E00DA5A79 /* decrease.png in Resources */,
 				764561ED1DD9B75C00DA5A79 /* gpsStat1@2x.png in Resources */,
+				7690D9EA1E651DAB0066AFCA /* AdjustSalaryCell.xib in Resources */,
 				7632F4361DD59178003C70ED /* icon_location@3x.png in Resources */,
 				76A6FEAC1DD19A9F00EBD292 /* LaunchScreen.storyboard in Resources */,
 				762AED1C1DD2B6C40090B646 /* Default@2x.png in Resources */,
+				7690D9EF1E651DB60066AFCA /* AdjustSalaryController.xib in Resources */,
 				76A6FEA91DD19A9F00EBD292 /* Assets.xcassets in Resources */,
 				7616EE301DDC288100396984 /* SalaryViewController.xib in Resources */,
 				764561EA1DD9963300DA5A79 /* postion.png in Resources */,
@@ -1182,6 +1205,7 @@
 				76A601CB1DD1B8DE00EBD292 /* MBProgressHUD+MJ.m in Sources */,
 				76A601CD1DD1B8DE00EBD292 /* MBProgressHUD.m in Sources */,
 				76A6006C1DD1A0DA00EBD292 /* ASIDataCompressor.m in Sources */,
+				7690D9E91E651DAB0066AFCA /* AdjustSalaryCell.m in Sources */,
 				762AECD71DD2B3FA0090B646 /* UIBarButtonItem+WB.m in Sources */,
 				76A6018C1DD1A1FD00EBD292 /* PaperAnswer.m in Sources */,
 				76EDF9EA1DDD49C400C74171 /* UIAlertView+Quick.m in Sources */,
@@ -1237,6 +1261,8 @@
 				76A6018E1DD1A1FD00EBD292 /* SetupData.m in Sources */,
 				76EDFA071DDDA6E500C74171 /* rscode.c in Sources */,
 				76A601AF1DD1A6C100EBD292 /* ActivityViewCell.m in Sources */,
+				7690D9F21E651F2D0066AFCA /* AdjustSalary.m in Sources */,
+				7690D9EE1E651DB60066AFCA /* AdjustSalaryController.m in Sources */,
 				7616EE2A1DDC090C00396984 /* ProfileSalaryCell.m in Sources */,
 				7616EE201DDBF82200396984 /* KaoQinResultCell.m in Sources */,
 				7645621A1DDB1E2C00DA5A79 /* ResultViewController.m in Sources */,
