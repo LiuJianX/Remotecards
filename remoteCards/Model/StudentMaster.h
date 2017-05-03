@@ -27,5 +27,7 @@
 @property (nonatomic,copy) NSString *employDate;
  
 
+@property (nonatomic, copy) NSString *workId;
+
 
 @end

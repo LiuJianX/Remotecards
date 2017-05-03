@@ -32,6 +32,8 @@
 @property (nonatomic,strong) UILabel *lblAShouldHousing;
 @property (nonatomic,strong) UILabel *lblTotalSalary;
 @property (nonatomic,strong) UILabel *lblATotalSalary;
+@property (nonatomic,strong) UILabel *lblAttendancaBonus;
+@property (nonatomic,strong) UILabel *lblAAttendancaBonus;
 
 - (void)setSalaryData:(AdjustSalary *)model;
 

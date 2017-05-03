@@ -307,6 +307,9 @@
             
             testObj.employDate = [mData objectForKey:@"EmployDate"];
             
+            testObj.workId = [mData objectForKey:@"WorkID"];
+            
+            
             [Utils saveCustomObject:testObj];
             
             PaperAnswer *anser = [[PaperAnswer alloc] init];

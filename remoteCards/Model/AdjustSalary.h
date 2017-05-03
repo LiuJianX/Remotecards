@@ -29,6 +29,8 @@
 @property (nonatomic,copy) NSString *AShouldHousing;
 @property (nonatomic,copy) NSString *TotalSalary;
 @property (nonatomic,copy) NSString *ATotalSalary;
+@property (nonatomic,copy) NSString *AAttendancaBonus;
+@property (nonatomic,copy) NSString *AttendancaBonus;
 
 -(AdjustSalary *)initWithTitle :(NSString *)Position
                    APosition:(NSString *)APosition
@@ -48,7 +50,10 @@
                    ShouldHousing:(NSString *)ShouldHousing
                    AShouldHousing:(NSString *)AShouldHousing
                     TotalSalary:(NSString *)TotalSalary
-                    ATotalSalary:(NSString *)ATotalSalary;
+                    ATotalSalary:(NSString *)ATotalSalary
+                    AttendancaBonus:(NSString *)AttendancaBonus
+                   AAttendancaBonus:(NSString *)AAttendancaBonus
+            ;
 
 
 @end

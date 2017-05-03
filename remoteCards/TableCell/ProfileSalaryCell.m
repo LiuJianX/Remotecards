@@ -565,6 +565,20 @@
     [view3 addSubview:_lblpOther];
     
     
+    y = y + h;
+    view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
+    [self addSubview:view1];
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
+    
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"全勤奖:";
+    [view1 addSubview:lbl];
+    _lblAttendancaBonus = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblAttendancaBonus.font = HYQIHEISIZE(14);
+    _lblAttendancaBonus.textColor  = NavFontColor;
+    [view1 addSubview:_lblAttendancaBonus];
+    
+
 }
 
 -(void)setData:(EMoney *)model{
@@ -606,6 +620,7 @@
     _lblpAttendance1.text = model.pAttendance1 ;
     _lblpAttendance2.text = model.pAttendance2 ;
     _lblpAttendance3.text = model.pAttendance3 ;
+    _lblAttendancaBonus.text = model.AttendancaBonus;
     
 }
 

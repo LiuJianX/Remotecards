@@ -48,7 +48,10 @@
              pAttendance1:(NSString *)pAttendance1
              pAttendance2:(NSString *)pAttendance2
              pAttendance3:(NSString *)pAttendance3
-              pCashSalary:(NSString *)pCashSalary{
+              pCashSalary:(NSString *)pCashSalary
+          AttendancaBonus:(NSString *)AttendancaBonus
+          AAttendancaBonus:(NSString *)AAttendancaBonus
+{
     if(self = [super init]){
         
         self.pPaySalary = pPaySalary;
@@ -88,7 +91,8 @@
         self.pAttendance1 = pAttendance1;
         self.pAttendance2 = pAttendance2;
         self.pAttendance3 = pAttendance3;
-        
+        self.AttendancaBonus = AttendancaBonus;
+        self.AAttendancaBonus = AAttendancaBonus;
         
     }
     return self;

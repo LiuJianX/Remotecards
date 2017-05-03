@@ -28,7 +28,12 @@
                   ShouldHousing:(NSString *)ShouldHousing
                  AShouldHousing:(NSString *)AShouldHousing
                     TotalSalary:(NSString *)TotalSalary
-                   ATotalSalary:(NSString *)ATotalSalary {
+                   ATotalSalary:(NSString *)ATotalSalary
+                    AAttendancaBonus:(NSString *)AAttendancaBonus
+                   AttendancaBonus:(NSString *)AttendancaBonus
+
+
+{
     
     if(self = [super init]){
         
@@ -51,6 +56,8 @@
         self.AShouldHousing = AShouldHousing;
         self.TotalSalary = TotalSalary;
         self.ATotalSalary = ATotalSalary;
+        self.AttendancaBonus = AttendancaBonus;
+        self.AAttendancaBonus=AAttendancaBonus;
         
     }
     return self;

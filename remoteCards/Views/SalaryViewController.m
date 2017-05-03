@@ -365,7 +365,9 @@
             if ((NSNull *)[key objectForKey:@"pAttendance1"]  != [NSNull null])model.pAttendance1 =[key objectForKey:@"pAttendance1"] ;
             if ((NSNull *)[key objectForKey:@"pAttendance2"]  != [NSNull null])model.pAttendance2 = [key objectForKey:@"pAttendance2"];
             if ((NSNull *)[key objectForKey:@"pAttendance3"]  != [NSNull null])model.pAttendance3 = [key objectForKey:@"pAttendance3"];
-            
+            if ((NSNull *)[key objectForKey:@"AttendanceBonus"]  != [NSNull null])
+                    model.AttendancaBonus =   [self getDecrypt:[key objectForKey:@"AttendanceBonus"]];
+
             
             [mtJob addObject:model];
                 

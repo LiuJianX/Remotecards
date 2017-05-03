@@ -55,6 +55,8 @@
 @property (nonatomic,strong) UILabel *lblpAttendance2;
 @property (nonatomic,strong) UILabel *lblpAttendance3;
 
+@property (nonatomic,strong) UILabel *lblAttendancaBonus;
+
 -(void)setData:(EMoney *)model ;
 
 

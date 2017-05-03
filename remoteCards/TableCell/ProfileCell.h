@@ -22,6 +22,9 @@ typedef void(^buttonTest)(ProfileCell *);
 @property (strong, nonatomic) buttonTest buttonTestBlock;
 
 @property (nonatomic,strong) UILabel *lblEmp_ID;
+
+@property (nonatomic,strong) UILabel *lblWork_ID;
+
 @property (nonatomic,strong) UILabel *lblName;
 @property (nonatomic,strong) UILabel *lbltDate;
 @property (nonatomic,strong) UILabel *lblDepartName;

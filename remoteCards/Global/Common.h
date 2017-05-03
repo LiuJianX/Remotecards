@@ -49,13 +49,13 @@
  *  @return <#return value description#>
  */
 
-//#define urlServer @"http://hrcampusweb-test.chinacloudsites.cn/"
+//#define urlServer @"http://192.168.150.240:8083/"
 
-#define urlServer @"http://218.16.57.171:8083/"
+#define urlServer @"http://183.63.216.106:8087/"
 
-#define appUrl @"https://edpazure.esquel.cn/apps/hrcampus/prod/card.htm"
+#define appUrl @"http://www.cysuper.com/card.htm"
 
-#define updateUrl @"https://edpazure.esquel.cn/apps/hrcampus/prod/Ver.js"
+#define updateUrl @"http://www.cysuper.com/App/Ver.js"
 
 /**
  *  版本号

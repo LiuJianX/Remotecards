@@ -265,6 +265,11 @@
             if ((NSNull *)[key objectForKey:@"ATotalSalary"] != [NSNull null])
                 model.ATotalSalary = [self getDecrypt:[key objectForKey:@"ATotalSalary"]] ;
             
+            if ((NSNull *)[key objectForKey:@"AAttendancaBonus"] != [NSNull null])
+                model.AAttendancaBonus = [self getDecrypt:[key objectForKey:@"AAttendancaBonus"]] ;
+            if ((NSNull *)[key objectForKey:@"AttendancaBonus"] != [NSNull null])
+                model.AttendancaBonus = [self getDecrypt:[key objectForKey:@"AttendancaBonus"]] ;
+            
             [mtJob addObject:model];
             
             [tableViewJob reloadData];

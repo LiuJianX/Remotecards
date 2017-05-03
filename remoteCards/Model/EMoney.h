@@ -49,6 +49,8 @@
 @property (nonatomic,copy) NSString *pAttendance3;
 @property (nonatomic,copy) NSString *pCashSalary;
 
+@property (nonatomic,copy) NSString *AttendancaBonus;
+@property (nonatomic,copy) NSString *AAttendancaBonus;
 
 -(EMoney *)initWithTitle :(NSString *)pPaySalary
               TotalSalary:(NSString *)TotalSalary
@@ -88,6 +90,9 @@
              pAttendance2:(NSString *)pAttendance2
              pAttendance3:(NSString *)pAttendance3
               pCashSalary:(NSString *)pCashSalary
+          AttendancaBonus:(NSString *)AttendancaBonus
+         AAttendancaBonus:(NSString *)AAttendancaBonus
+
             ;
 
 

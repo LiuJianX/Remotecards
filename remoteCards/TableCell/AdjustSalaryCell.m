@@ -290,7 +290,35 @@
     [view2 addSubview:_lblATotalSalary];
     
     
+    y = y + h;
     
+    
+    view3 = [[UIView alloc] initWithFrame:CGRectMake(8 , y, w, h)];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, view3.bounds.size.height)];
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"原全勤奖:";
+    [view3 addSubview:lbl];
+    _lblAttendancaBonus = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view3.bounds.size.width , view3.bounds.size.height)];
+    _lblAttendancaBonus.font = HYQIHEISIZE(14);
+    
+    [view3 addSubview:_lblAttendancaBonus];
+    
+     
+    [self addSubview:view3];
+    
+    view2 = [[UIView alloc] initWithFrame:CGRectMake(8 + w, y, w, h)];
+    
+    [self addSubview:view2];
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, view2.bounds.size.height)];
+    lbl.font = HYQIHEISIZE(12);
+    lbl.text = @"调后全勤奖:";
+    [view2 addSubview:lbl];
+    
+    _lblAAttendancaBonus = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view2.bounds.size.width , view2.bounds.size.height)];
+    _lblAAttendancaBonus.font = HYQIHEISIZE(14);
+    _lblAAttendancaBonus.textColor = NavFontColor;
+    [view2 addSubview:_lblAAttendancaBonus];
     
 }
 - (void)setSalaryData:(AdjustSalary *)model{
@@ -314,6 +342,9 @@
     _lblAShouldHousing.text = model.AShouldHousing ;
     _lblTotalSalary.text = model.TotalSalary ;
     _lblATotalSalary.text = model.ATotalSalary ;
+    
+    _lblAttendancaBonus.text = model.AttendancaBonus ;
+    _lblAAttendancaBonus.text = model.AAttendancaBonus ;
 }
 
 @end

@@ -23,6 +23,8 @@
     [encoder encodeObject:self.position forKey:@"position"]; 
     [encoder encodeObject:self.employDate forKey:@"employDate"];
     
+    [encoder encodeObject:self.workId forKey:@"workId"];
+    
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -36,6 +38,7 @@
         self.duty = [decoder decodeObjectForKey:@"duty"];
         self.position = [decoder decodeObjectForKey:@"position"];
         self.employDate =  [decoder decodeObjectForKey:@"employDate"];
+        self.workId =  [decoder decodeObjectForKey:@"workId"];
     }
     return  self;
 }

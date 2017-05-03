@@ -37,7 +37,7 @@
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
     
     lbl.font = HYQIHEISIZE(14);
-    lbl.text = @"员工编号:";
+    lbl.text = @" 打卡编号:";
     [view1 addSubview:lbl];
     _lblEmp_ID = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view1.bounds.size.width , view1.bounds.size.height)];
     _lblEmp_ID.font = HYQIHEISIZE(16);
@@ -45,6 +45,19 @@
     
     [view1 addSubview:_lblEmp_ID];
     
+    
+    y = y + h;
+    view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
+    [self addSubview:view1];
+    
+    lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, view1.bounds.size.height)];
+    lbl.font = HYQIHEISIZE(14);
+    lbl.text = @"员工工号:";
+    [view1 addSubview:lbl];
+    _lblWork_ID = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, view1.bounds.size.width , view1.bounds.size.height)];
+    _lblWork_ID.font = HYQIHEISIZE(16);
+    _lblWork_ID.text = stu.workId;
+    [view1 addSubview:_lblWork_ID];
     
     y = y + h;
     view1 = [[UIView alloc] initWithFrame:CGRectMake(8, y, w, h)];
