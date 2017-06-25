@@ -78,6 +78,8 @@
 + (NSString *)loadUserDefaultsData:(NSString *)key;
 
 + (void)saveLoginAMap:(AnswerData *)data;
++(NSString *)getFullDatabasePathFromFileName:(NSString *)name;
+
 + (AnswerData *)loadLoginAMapWithKey;
 
 /**

@@ -8,7 +8,7 @@
 
 #import "AdjustSalaryController.h"
 #import "Common.h"
-#import "AdjustSalaryCell.h" 
+#import "AdjustSalaryCell.h"
 #import "UIImage+WB.h"
 #import "Utils.h"
 #import "MBProgressHUD+MJ.h"
@@ -152,7 +152,7 @@
         AdjustSalary *model = [mtJob objectAtIndex:indexPath.row];
         if (model != nil) {
             [cell setSalaryData:model];
-
+            
         }
         
         
@@ -265,11 +265,20 @@
             if ((NSNull *)[key objectForKey:@"ATotalSalary"] != [NSNull null])
                 model.ATotalSalary = [self getDecrypt:[key objectForKey:@"ATotalSalary"]] ;
             
-            if ((NSNull *)[key objectForKey:@"AAttendancaBonus"] != [NSNull null])
-                model.AAttendancaBonus = [self getDecrypt:[key objectForKey:@"AAttendancaBonus"]] ;
-            if ((NSNull *)[key objectForKey:@"AttendancaBonus"] != [NSNull null])
-                model.AttendancaBonus = [self getDecrypt:[key objectForKey:@"AttendancaBonus"]] ;
+            if ((NSNull *)[key objectForKey:@"AttendancaBonus"] != [NSNull null]){
+                NSString *attendancaBonus = [key objectForKey:@"AttendancaBonus"];
+                if(attendancaBonus != nil){
+                    model.AttendancaBonus = [self getDecrypt:attendancaBonus] ;
+                }
+            }
             
+            if ((NSNull *)[key objectForKey:@"AAttendancaBonus"] != [NSNull null]){
+                
+                NSString *aattendancaBonus = [key objectForKey:@"AAttendancaBonus"];
+                if(aattendancaBonus !=nil ){
+                    model.AAttendancaBonus = [self getDecrypt:aattendancaBonus] ;
+                }
+            }
             [mtJob addObject:model];
             
             [tableViewJob reloadData];

@@ -81,6 +81,7 @@
     activty.type = @"5";
     [tableData addObject:activty];
     
+
     
     tableViewNews=[[UITableView alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width,self.view.frame.size.height) style:UITableViewStyleGrouped];
     

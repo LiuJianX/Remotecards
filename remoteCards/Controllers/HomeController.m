@@ -31,6 +31,7 @@
 #import "MBProgressHUD+MJ.h"
 #import "UpdatePwdViewController.h"
 #import "AdjustSalaryController.h"
+#import "CardRecordController.h"
 
 
 @interface HomeController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate
@@ -58,6 +59,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory,NSUserDomainMask, YES);
+    NSString *doucmentDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [doucmentDirectory stringByAppendingString:@"remoteCards.db"];
+    FMDatabase* db = [FMDatabase databaseWithPath:dbPath];
+    
+    if(![db open])
+    {
+        NSLog(@"can't open!");
+        return;
+    }
+    NSLog(@" open db!");
+    
+    FMResultSet *rs = [db executeQuery:@"select count(*) as 'count' from sqlite_master where type ='table' and name = ?", @"CardRecord"];
+    while ([rs next])
+    {
+        // just print out what we've got in a number of formats.
+        NSInteger count = [rs intForColumn:@"count"];
+        
+        if (0 == count)
+        {
+            [db executeUpdate:@"CREATE TABLE CardRecord(userId text,cardDate text,cardType text ,inOut int,cYear int,cMonth int ,LoData text, errMsg text)"];
+        }
+    }
+    [db close];
+    
     
     studented = [Utils loadCustomObjectWithKey:LoginKey];
     
@@ -126,6 +153,12 @@
     activty.title = @"我的调薪单";
     activty.type = @"6";
     [tableData addObject:activty];
+    
+    activty = [[News alloc] init];
+    activty.title = @"我的打卡记录";
+    activty.type = @"7";
+    [tableData addObject:activty];
+    
     
     tableViewNews=[[UITableView alloc]initWithFrame:CGRectMake(0,60, self.view.frame.size.width,self.view.frame.size.height) style:UITableViewStyleGrouped];
     
@@ -433,6 +466,11 @@
         [self.navigationController pushViewController:AdjSalaryView animated:YES];
 
         
+    }else if ([newModel.type isEqualToString:@"7"]){ //
+        CardRecordController *cardRecordView = [[CardRecordController alloc] init];
+        cardRecordView.title = newModel.title;
+        [self.navigationController pushViewController:cardRecordView animated:YES];
+         
     }
 }
 

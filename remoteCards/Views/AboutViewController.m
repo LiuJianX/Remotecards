@@ -14,6 +14,8 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "SBJSON.h"
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
 
 @interface AboutViewController (){
     UIImage *img;
@@ -63,9 +65,18 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
-}
+} 
 - (void)initAMapView
 {
+    
+    
+    
+    
+    //NSString *strLo = [NSString stringWithFormat:@"%@-%@",_lblLon.text,_lblLat.text];
+    //
+    //                        BOOL res = [db1 executeUpdate:insCmd, studented.employee_ID,strDate,strIn,strYear,strMonth,strLo,errMsg];
+    
+    
     if (self.mapView == nil)
     {
         self.mapView = [[MAMapView alloc] initWithFrame:self.viewMap.bounds];
@@ -319,7 +330,7 @@
     
     float fh = [Utils getScreenHeight] / 5 * 2;
     float fh2 = [Utils getScreenHeight] / 5 * 3;
-   
+    
     
     if(fh2 < 290){
         
@@ -327,7 +338,7 @@
         
     }
     //340
-   
+    
     
     UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, fh2, [Utils getScreenWidth], 1)];
     imgLine.image = [UIImage imageNamed:@"login_textfield_mid"];
@@ -422,19 +433,19 @@
             
         default:
             CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.width,aImage.size.height), aImage.CGImage);
-            break;  
-    }  
+            break;
+    }
     
-    // And now we just create a new UIImage from the drawing context  
-    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);  
-    UIImage *img = [UIImage imageWithCGImage:cgimg];  
-    CGContextRelease(ctx);  
-    CGImageRelease(cgimg);  
-    return img;  
+    // And now we just create a new UIImage from the drawing context
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *img = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return img;
 }
 
 - (void) shutterCamera:(id)sender {
-   
+    
     if([_lblServTime.text isEqualToString:@""]){
         
         [Utils showMBAllTextDialog:@"服务器时间获取失败,不允许进行打卡." view:self.view];
@@ -455,7 +466,7 @@
     if (!videoConnection) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-
+        
         NSLog(@"take photo failed!");
         return;
     }
@@ -475,14 +486,14 @@
         
         self.image = [self fixOrientation:self.image];
         
-         NSString *base64Encoded = @"";
+        NSString *base64Encoded = @"";
         
         if([isPhoto isEqualToString:@"1"]){
             
             NSData *nsdata = UIImageJPEGRepresentation(self.image,1);
             
             base64Encoded = [nsdata base64EncodedStringWithOptions:0];
-        
+            
             
             CGRect inRect = self.viewMap.bounds;
             
@@ -539,10 +550,10 @@
         [requestForm setTimeOutSeconds:timeOut];
         [requestForm startSynchronous];
         
-        
-        
     }];
 }
+
+
 - (BOOL) imageHasAlpha: (UIImage *) image
 {
     CGImageAlphaInfo alpha = CGImageGetAlphaInfo(image.CGImage);
@@ -570,7 +581,40 @@
     
 }
 
-- (void)requestProgessSuccess:(ASIHTTPRequest *)request
+- (void)getCardRecord{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"检查打卡记录,请稍候...";
+    
+    NSURL *url = [NSURL URLWithString:[urlServer stringByAppendingString:@"App/GetCardRecord"]];
+    ASIFormDataRequest *requestForm = [[ASIFormDataRequest alloc] initWithURL:url];
+    
+    NSDateFormatter *format=[[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    NSString *strDate = [NSString stringWithFormat:@"%@",[format stringFromDate:serverDateTime]];
+    
+    [requestForm setPostValue:studented.employee_ID forKey:@"userId"];
+    
+    NSString *strIn =_isIn ? @"1" : @"0";
+    
+    [requestForm setPostValue: strIn forKey:@"inOut"];
+    
+    [requestForm setPostValue:strDate forKey:@"dateTime"];
+    
+    
+    [requestForm setDelegate:self];
+    
+    [requestForm setDidFailSelector:@selector(requestCardRecordFailed:)];
+    
+    [requestForm setDidFinishSelector:@selector(requestCardRecordSuccess:)];
+    
+    [requestForm setTimeOutSeconds:timeOut];
+    [requestForm startSynchronous];
+    
+    
+    
+}
+
+- (void)requestCardRecordSuccess:(ASIHTTPRequest *)request
 {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
@@ -587,20 +631,125 @@
                 return;
             }
             
-            //初始化AlertView
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示"
-                                                            message:@"打卡成功"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"确定"
-                                                  otherButtonTitles:nil ,nil];
+            BOOL isSuc = [[responseDict objectForKey:@"isSuc"] boolValue] ;
             
-            alert.tag = 3;
-            [alert show];
+            if( isSuc){
+                //初始化AlertView
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示"
+                                                                message:@"恭喜你,打卡成功"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil ,nil];
+                
+                alert.tag = 3;
+                [alert show];
+            }else{
+                [Utils showAllTextDialog:@"打卡未成功,请尽快重新打卡."];
+            }
+        } else {
+            [Utils showAllTextDialog: @"网络超时,请稍后再试!"];
+        }
+    } @catch (NSException *exception) {
+        [Utils showAllTextDialog:[NSString stringWithFormat:@"发生错误,原因:%@",exception] ];
+        
+    }@finally{
+        
+    }
+    
+}
+
+- (void)requestCardRecordFailed:(ASIHTTPRequest *)request{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [ Utils showAllTextDialog:@"网络超时,请稍后再试!"];
+    
+}
+
+
+- (void)requestProgessSuccess:(ASIHTTPRequest *)request
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    @try{
+        if (request.responseStatusCode == 200) {
+            NSString *responseString = [request responseString];
+            NSMutableDictionary *responseDict = [responseString JSONValue];
             
-            //   [Utils showMBAllTextDialog:@"打卡成功." view:self.view];
-            
-            
-            
+            NSString *errMsg = [responseDict objectForKey:@"errMsg"];
+            if(errMsg !=nil && ![errMsg isEqualToString:@""]){
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [Utils showAllTextDialog: [NSString stringWithFormat:@"发生错误,原因:%@",errMsg]];
+                
+                return;
+            }
+            BOOL isSuc = [[responseDict objectForKey:@"isSuc"] boolValue] ;
+            if(isSuc == YES){
+                
+                NSDateFormatter *format=[[NSDateFormatter alloc] init];
+                [format setDateFormat:@"MM-dd HH:mm"];
+                
+                NSString *strDate = [NSString stringWithFormat:@"%@",[format stringFromDate:serverDateTime]];
+                
+                
+                NSDateFormatter *formatYear=[[NSDateFormatter alloc] init];
+                [formatYear setDateFormat:@"yyyy"];
+                
+                NSString *strYear = [NSString stringWithFormat:@"%@",[formatYear stringFromDate:serverDateTime]];
+                
+                
+                NSDateFormatter *formatMonth=[[NSDateFormatter alloc] init];
+                [formatMonth setDateFormat:@"M"];
+                NSString *strMonth = [NSString stringWithFormat:@"%@",[formatMonth stringFromDate:serverDateTime]];
+                
+                
+                NSString *strIn =_isIn ? @"1" : @"0";
+                
+                NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory,NSUserDomainMask, YES);
+                NSString *doucmentDirectory = [paths objectAtIndex:0];
+                NSString *dbPath = [doucmentDirectory stringByAppendingString:@"remoteCards.db"];
+//
+                FMDatabaseQueue * queue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
+                dispatch_queue_t q1 = dispatch_queue_create("queue1", NULL);
+                dispatch_queue_t q2 = dispatch_queue_create("queue2", NULL);
+                
+                dispatch_async(q1, ^{
+                    [queue inDatabase:^(FMDatabase *db2) {
+                        NSString* delCmd = [NSString stringWithFormat:@"delete from CardRecord where cYear <> %@",strYear];
+                        BOOL res = [db2 executeUpdate:delCmd];
+                        if (!res) {
+                            NSLog(@"error to delete data");
+                        } else {
+                            NSLog(@"succ to delete data");
+                        }
+                    }];
+                });
+                
+                
+                dispatch_async(q2, ^{
+                    [queue inDatabase:^(FMDatabase *db1) {
+                        NSString *insCmd= @"INSERT INTO CardRecord(userId,cardDate,cardType,cYear,cMonth,LoData,errMsg)values(?,?,?,?,?,?,?)";
+                        NSString *strLo = [NSString stringWithFormat:@"%@-%@",_lblLon.text,_lblLat.text];
+                        
+                        BOOL res = [db1 executeUpdate:insCmd, studented.employee_ID,strDate,strIn,strYear,strMonth,strLo,errMsg];
+                        if (!res) {
+                            NSLog(@"error to inster data");
+                        } else {
+                            NSLog(@"succ to inster data");
+                        }
+                        
+                    }];
+                });
+                //初始化AlertView
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示"
+                                                                message:@"恭喜你,打卡成功"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil ,nil];
+                
+                alert.tag = 3;
+                [alert show];
+            }else{
+                [Utils showAllTextDialog: @"打卡失败,请尽快重新打卡!"];
+            }
         } else {
             [Utils showAllTextDialog: @"网络超时,请稍后再试!"];
         }
@@ -755,10 +904,10 @@
             
             _isIn = [[responseDict objectForKey:@"isIn"] boolValue];
             
-                 isMap = [responseDict objectForKey:@"IsUploadMap"];
-                   
+            isMap = [responseDict objectForKey:@"IsUploadMap"];
             
-               isPhoto = [responseDict objectForKey:@"IsUploadPhoto"];
+            
+            isPhoto = [responseDict objectForKey:@"IsUploadPhoto"];
             
             
             if(_isIn){
@@ -788,7 +937,7 @@
             [timerDownCount setCountDownTime:DownCount];
             
             [timerDownCount start];
-
+            
             
             
         } else {
@@ -893,7 +1042,7 @@
     [self initContorl];
     
     
-  
+    
     _canCa = [self canUserCamear];
     if (_canCa) {
         [self customCamera];
@@ -918,7 +1067,7 @@
     
     self.navigationItem.rightBarButtonItem = rightButton;
     
-   
+    
     [self initAMapView];
     
     [self configLocationManager];

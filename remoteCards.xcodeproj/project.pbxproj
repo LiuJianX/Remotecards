@@ -137,6 +137,11 @@
 		76A6FEF41DD19FD000EBD292 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A6FEE71DD19FD000EBD292 /* LoginViewController.m */; };
 		76A6FEF51DD19FD000EBD292 /* ProfileActivty.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A6FEE91DD19FD000EBD292 /* ProfileActivty.m */; };
 		76A6FEFD1DD1A0A100EBD292 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A6FEFC1DD1A0A100EBD292 /* Utils.m */; };
+		76BC943B1EFDED4700CAC6F3 /* CardRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC94391EFDED4700CAC6F3 /* CardRecordCell.m */; };
+		76BC943C1EFDED4700CAC6F3 /* CardRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76BC943A1EFDED4700CAC6F3 /* CardRecordCell.xib */; };
+		76BC943F1EFDEDA800CAC6F3 /* CadRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC943E1EFDEDA800CAC6F3 /* CadRecordModel.m */; };
+		76BC94431EFDF09A00CAC6F3 /* CardRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC94411EFDF09A00CAC6F3 /* CardRecordController.m */; };
+		76BC94441EFDF09A00CAC6F3 /* CardRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76BC94421EFDF09A00CAC6F3 /* CardRecordController.xib */; };
 		76EDF9E81DDD49C400C74171 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 76EDF9D91DDD49C400C74171 /* NSString+Extension.m */; };
 		76EDF9E91DDD49C400C74171 /* trade.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76EDF9DB1DDD49C400C74171 /* trade.bundle */; };
 		76EDF9EA1DDD49C400C74171 /* UIAlertView+Quick.m in Sources */ = {isa = PBXBuildFile; fileRef = 76EDF9DD1DDD49C400C74171 /* UIAlertView+Quick.m */; };
@@ -405,6 +410,14 @@
 		76A6FFF41DD1A0DA00EBD292 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		76A6FFF51DD1A0DA00EBD292 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		76A6FFF61DD1A0DA00EBD292 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		76BC94381EFDED4700CAC6F3 /* CardRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardRecordCell.h; sourceTree = "<group>"; };
+		76BC94391EFDED4700CAC6F3 /* CardRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardRecordCell.m; sourceTree = "<group>"; };
+		76BC943A1EFDED4700CAC6F3 /* CardRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardRecordCell.xib; sourceTree = "<group>"; };
+		76BC943D1EFDEDA800CAC6F3 /* CadRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CadRecordModel.h; sourceTree = "<group>"; };
+		76BC943E1EFDEDA800CAC6F3 /* CadRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CadRecordModel.m; sourceTree = "<group>"; };
+		76BC94401EFDF09A00CAC6F3 /* CardRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardRecordController.h; sourceTree = "<group>"; };
+		76BC94411EFDF09A00CAC6F3 /* CardRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardRecordController.m; sourceTree = "<group>"; };
+		76BC94421EFDF09A00CAC6F3 /* CardRecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardRecordController.xib; sourceTree = "<group>"; };
 		76EDF9D81DDD49C400C74171 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		76EDF9D91DDD49C400C74171 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		76EDF9DA1DDD49C400C74171 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
@@ -571,6 +584,9 @@
 		762AED381DD30D4B0090B646 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76BC94401EFDF09A00CAC6F3 /* CardRecordController.h */,
+				76BC94411EFDF09A00CAC6F3 /* CardRecordController.m */,
+				76BC94421EFDF09A00CAC6F3 /* CardRecordController.xib */,
 				7690D9EB1E651DB60066AFCA /* AdjustSalaryController.h */,
 				7690D9EC1E651DB60066AFCA /* AdjustSalaryController.m */,
 				7690D9ED1E651DB60066AFCA /* AdjustSalaryController.xib */,
@@ -723,6 +739,8 @@
 				76A601821DD1A1FD00EBD292 /* SetupData.m */,
 				76A601831DD1A1FD00EBD292 /* StudentMaster.h */,
 				76A601841DD1A1FD00EBD292 /* StudentMaster.m */,
+				76BC943D1EFDEDA800CAC6F3 /* CadRecordModel.h */,
+				76BC943E1EFDEDA800CAC6F3 /* CadRecordModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -748,6 +766,9 @@
 				7616EE271DDC090C00396984 /* ProfileSalaryCell.h */,
 				7616EE281DDC090C00396984 /* ProfileSalaryCell.m */,
 				7616EE291DDC090C00396984 /* ProfileSalaryCell.xib */,
+				76BC94381EFDED4700CAC6F3 /* CardRecordCell.h */,
+				76BC94391EFDED4700CAC6F3 /* CardRecordCell.m */,
+				76BC943A1EFDED4700CAC6F3 /* CardRecordCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -1133,6 +1154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7616EE2B1DDC090C00396984 /* ProfileSalaryCell.xib in Resources */,
+				76BC94441EFDF09A00CAC6F3 /* CardRecordController.xib in Resources */,
 				7616EE3C1DDC4D7000396984 /* PersonViewController.xib in Resources */,
 				7632F4471DD5AAEA003C70ED /* unchecked@2x.png in Resources */,
 				764561F71DDAD90300DA5A79 /* JobViewController.xib in Resources */,
@@ -1160,6 +1182,7 @@
 				76A6FEA91DD19A9F00EBD292 /* Assets.xcassets in Resources */,
 				7616EE301DDC288100396984 /* SalaryViewController.xib in Resources */,
 				764561EA1DD9963300DA5A79 /* postion.png in Resources */,
+				76BC943C1EFDED4700CAC6F3 /* CardRecordCell.xib in Resources */,
 				76A6FEA71DD19A9F00EBD292 /* Main.storyboard in Resources */,
 				76A600731DD1A0DA00EBD292 /* README-GHUnit in Resources */,
 				7632F4461DD5AAEA003C70ED /* unchecked.png in Resources */,
@@ -1212,6 +1235,7 @@
 				76A6FEF41DD19FD000EBD292 /* LoginViewController.m in Sources */,
 				76A600C21DD1A0DA00EBD292 /* SBJsonUTF8Stream.m in Sources */,
 				76EDFA031DDDA6E500C74171 /* QRCodeGenerator.m in Sources */,
+				76BC94431EFDF09A00CAC6F3 /* CardRecordController.m in Sources */,
 				76A600C31DD1A0DA00EBD292 /* SBJsonWriter.m in Sources */,
 				76A601881DD1A1FD00EBD292 /* Interview.m in Sources */,
 				76A6018F1DD1A1FD00EBD292 /* StudentMaster.m in Sources */,
@@ -1265,6 +1289,7 @@
 				7690D9EE1E651DB60066AFCA /* AdjustSalaryController.m in Sources */,
 				7616EE2A1DDC090C00396984 /* ProfileSalaryCell.m in Sources */,
 				7616EE201DDBF82200396984 /* KaoQinResultCell.m in Sources */,
+				76BC943B1EFDED4700CAC6F3 /* CardRecordCell.m in Sources */,
 				7645621A1DDB1E2C00DA5A79 /* ResultViewController.m in Sources */,
 				762AECF11DD2B5C40090B646 /* FMDatabase.m in Sources */,
 				7616EE361DDC30CC00396984 /* GTMBase64.m in Sources */,
@@ -1283,6 +1308,7 @@
 				76EDFA041DDDA6E500C74171 /* qrencode.c in Sources */,
 				76A6018A1DD1A1FD00EBD292 /* News.m in Sources */,
 				762AECCA1DD2B39E0090B646 /* ECNavigationController.m in Sources */,
+				76BC943F1EFDEDA800CAC6F3 /* CadRecordModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

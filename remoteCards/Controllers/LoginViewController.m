@@ -71,7 +71,7 @@
     //将触摸事件添加到当前view
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
-    NSString *cLabelString = @"东莞市超业精密电子设备有限公司";
+    NSString *cLabelString = @"东莞市超业精密设备有限公司";
    
     UILabel *lbl = [[UILabel alloc] init];
     [lbl setFrame:CGRectMake(0, 110, [Utils getScreenWidth], 21)];

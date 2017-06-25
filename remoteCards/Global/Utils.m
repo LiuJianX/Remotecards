@@ -67,7 +67,18 @@ static float screenHeight = 0;
     return label;
     
 }
-
+#pragma mark - 获取数据库文件的全路径
+- (NSString *)getFullDatabasePathFromFileName:(NSString *)name{
+    NSString *path = NSHomeDirectory();
+    NSString *docPath = [path stringByAppendingPathComponent:@"Documents"];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if ([fm fileExistsAtPath:docPath]) {
+        return [docPath stringByAppendingFormat:@"/%@",name];
+    }else{
+        KLLog(@"Documents不存在");
+        return nil;
+    }
+}
 
 //alertView
 +(UIAlertView *)alertTitle:(NSString *)title message:(NSString *)msg delegate:(id)aDeleagte cancelBtn:(NSString *)cancelName otherBtnName:(NSString *)otherbuttonName{
@@ -422,7 +433,7 @@ static float screenHeight = 0;
 }
 
 +(NSString *)getDataBaseFile{
-    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"ecampus" ofType:@"bundle"]];
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"remoteCards" ofType:@"bundle"]];
     NSString * strPath = [bundle pathForResource:@"campus" ofType:@"db"];
     
     return strPath;

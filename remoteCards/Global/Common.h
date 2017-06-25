@@ -51,7 +51,7 @@
 
 //#define urlServer @"http://192.168.150.240:8083/"
 
-#define urlServer @"http://183.63.216.106:8087/"
+#define urlServer @"http://www.cysuper.com/"
 
 #define appUrl @"http://www.cysuper.com/card.htm"
 
